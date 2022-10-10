@@ -27,13 +27,11 @@ class WorkersTableView extends TableView
     public function headers(): array
     {
         return [
-            Header::title('name')->sortBy('name'),
-            Header::title('surname')->sortBy('surname'),
-           /* 'name',
+            'ID',
+            'name',
             'surname',
             'created_at',
             'update_at'
-           */
         ];
     }
 
@@ -42,13 +40,14 @@ class WorkersTableView extends TableView
      *
      * @param $model Current model for each row
      */
-    public function row($model): array
+    public function row(Worker $worker): array
     {
         return [
-            $model->name,
-            $model->surname,
-            $model->created_at,
-            $model->update_at
+            $worker->id,
+            $worker->name,
+            $worker->surname,
+            $worker->created_at,
+            $worker->update_at
 
         ];
     }
