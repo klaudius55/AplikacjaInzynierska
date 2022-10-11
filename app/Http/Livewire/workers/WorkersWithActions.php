@@ -2,7 +2,7 @@
 
 namespace App\Http\Livewire\workers;
 
-use App\Actions\ActivateWorkerAction;
+use App\Actions\workers\ActivateWorkerAction;
 
 
 class WorkersWithActions extends WorkersWithSortColumnsTableView

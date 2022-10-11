@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Actions;
+namespace App\Actions\workers;
 
+use App\Models\Worker;
 use LaravelViews\Actions\Action;
 use LaravelViews\Views\View;
 
@@ -22,8 +23,8 @@ class ActivateWorkerAction extends Action
     /**
      * Execute the action when the user clicked on the button
      *
-     * @param $model Model object of the list where the user has clicked
-     * @param $view Current view where the action was executed from
+     * @param $model Worker object of the list where the user has clicked
+     * @param $view  view where the action was executed from
      */
     public function handle($model, View $view)
     {
