@@ -1,14 +1,17 @@
-<x-app-layout>
+<x-app-layout xmlns:livewire="">
     <div class="max-w-2xl mx-auto p-4 sm:p-6 lg:p-8">
-        <form method="POST" action="{{ route('workers.store') }}">
-            @csrf
-            <textarea
-                name="create"
-                placeholder="{{ __('What\'s on your mind?') }}"
-                class="block w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm"
-            >{{ old('message') }}</textarea>
-            <x-input-error :messages="$errors->get('message')" class="mt-2" />
-            <button {{action(route('workers.store'))}}</button>
-        </form>
+        <x-input icon="user" label="Name" placeholder="Imię" />
+
+        <x-input icon="user" label="Name" placeholder="Nazwisko" />
     </div>
+    <form method="GET" action="{{ route('workers.index') }}">
+    <div class="max-w-2xl mx-auto p-4 sm:p-6 lg:p-8">
+        <x-primary-button class="mt-4">{{('Anuluj') }}</x-primary-button>
+    </div>
+    </form>
+    <form method="POST" action="{{ route('workers.index') }}">
+        <div class="max-w-2xl mx-auto p-4 sm:p-6 lg:p-8">
+            <x-primary-button class="mt-4">{{('Zatwierdź') }}</x-primary-button>
+        </div>
+    </form>
 </x-app-layout>

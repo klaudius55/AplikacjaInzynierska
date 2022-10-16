@@ -13,6 +13,7 @@ class Worker extends Model
 
 protected $table = 'workers';
 
+
     protected $fillable = [
         'ID',
         'name',

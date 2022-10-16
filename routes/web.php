@@ -32,8 +32,10 @@ Route::resource('workers', WorkerController::class)
     ->only(['index', 'store'])
     ->middleware(['auth', 'verified']);
 
-//Route::get('/AddWorker',[WorkerController::class,'create'])
-   // ->name('workers.create');
+Route::resource('workers', WorkerController::class)
+   ->only(['index', 'create'])
+    ->middleware(['auth', 'verified']);
+
 
 Route::resource('tasks', TaskController::class)
     ->only(['index', 'store'])

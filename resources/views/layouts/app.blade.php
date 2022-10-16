@@ -9,9 +9,13 @@
 
         <!-- Fonts -->
         <link rel="stylesheet" href="https://fonts.bunny.net/css2?family=Nunito:wght@400;600;700&display=swap">
+        @livewireStyles
+        @laravelViewsStyles(laravel-views)
 
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
+        <wireui:scripts />
+        <script src="//unpkg.com/alpinejs" defer></script>
     </head>
     <body class="font-sans antialiased">
         <div class="min-h-screen bg-gray-100">
@@ -31,5 +35,7 @@
                 {{ $slot }}
             </main>
         </div>
+        @livewireScripts
+        @laravelViewsScripts(laravel-views)
     </body>
 </html>
