@@ -24,7 +24,7 @@ class WorkerController extends Controller
      */
     public function create()
     {
-        return view('workers.create');
+        return view('workers.form');
     }
 
     /**
@@ -57,7 +57,10 @@ class WorkerController extends Controller
      */
     public function edit(Worker $worker)
     {
-        //
+        return view(
+            'workers.form',
+
+        );
     }
 
     /**

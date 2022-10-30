@@ -29,13 +29,8 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::resource('workers', WorkerController::class)
-    ->only(['index', 'store'])
+    ->only(['index', 'create','edit'])
     ->middleware(['auth', 'verified']);
-
-Route::resource('workers', WorkerController::class)
-   ->only(['index', 'create'])
-    ->middleware(['auth', 'verified']);
-
 
 Route::resource('tasks', TaskController::class)
     ->only(['index', 'store'])
