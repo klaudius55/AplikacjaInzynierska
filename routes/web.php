@@ -41,15 +41,15 @@ Route::resource('projects', ProjectController::class)
     ->middleware(['auth', 'verified']);
 
 Route::resource('materials', MaterialController::class)
-    ->only(['index', 'store'])
+    ->only(['index','create', 'store'])
     ->middleware(['auth', 'verified']);
 
 Route::resource('units', UnitController::class)
-    ->only(['index', 'store'])
+    ->only(['index', 'create','edit'])
     ->middleware(['auth', 'verified']);
 
 Route::resource('types', TypeController::class)
-    ->only(['index', 'store'])
+    ->only(['index', 'create','edit'])
     ->middleware(['auth', 'verified']);
 
 Route::resource('workTimes', WorkTimeController::class)

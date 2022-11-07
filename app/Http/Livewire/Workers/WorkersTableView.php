@@ -2,17 +2,22 @@
 
 namespace App\Http\Livewire\Workers;
 
+
+use App\Actions\Workers\EditWorker;
 use App\Models\Worker;
+use LaravelViews\Actions\RedirectAction;
 use LaravelViews\Facades\Header;
 use LaravelViews\Views\TableView;
+use WireUi\Traits\Actions;
 
 
 class WorkersTableView extends TableView
 {
+    use Actions;
 
     public $searchBy = ['name','surname'];
     protected $model = Worker::class;
-    protected $paginate = 10;
+    protected $paginate = 6;
 
     /**
      * Sets the headers of the table as you want to be displayed
@@ -27,7 +32,8 @@ class WorkersTableView extends TableView
             Header::title('Name')->sortBy('name'),
             Header::title('Surname')->sortBy('surname'),
             Header::title('Created')->sortBy('created_at'),
-            Header::title('Modified')->sortBy('update_at')
+            Header::title('Modified')->sortBy('updated_at'),
+            Header::title('Deleted')->sortBy('deleted_at'),
         ];
     }
 
@@ -43,9 +49,25 @@ class WorkersTableView extends TableView
             $worker->name,
             $worker->surname,
             $worker->created_at,
-            $worker->update_at
+            $worker->updated_at,
+            $worker->deleted_at,
         ];
 
     }
-
+    protected function actionsByRow()
+    {
+        return [
+            // Will redirect to `route('user', $user->id)`
+            new RedirectAction('workers.edit', 'Edytuj', 'edit'),
+            new RedirectAction('workers.index','Usuń','delete'),
+        ];
+       }
+       public function softDelete(int $id){
+        dd($id);
+        /*
+        $worker = Worker::find($id);
+        $worker->delete();
+        $this->notification()->success('Usunięto');
+*/
+       }
 }

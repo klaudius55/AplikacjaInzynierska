@@ -1,16 +1,16 @@
 <?php
 
-namespace App\Http\Livewire;
+namespace App\Http\Livewire\Materials;
 
-use App\Models\Task;
+use App\Models\Material;
 use LaravelViews\Views\TableView;
 
-class TasksTableView extends TableView
+class MaterialsTableView extends TableView
 {
     /**
      * Sets a model class to get the initial data
      */
-    protected $model = Task::class;
+    protected $model = Material::class;
 
     /**
      * Sets the headers of the table as you want to be displayed

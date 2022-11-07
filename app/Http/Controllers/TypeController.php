@@ -24,7 +24,7 @@ class TypeController extends Controller
      */
     public function create()
     {
-        //
+        return view('types.form');
     }
 
     /**
@@ -57,7 +57,9 @@ class TypeController extends Controller
      */
     public function edit(Type $type)
     {
-        //
+        return view(
+            'types.form'
+        );
     }
 
     /**

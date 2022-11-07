@@ -59,6 +59,9 @@ class WorkerController extends Controller
     {
         return view(
             'workers.form',
+            [
+                'worker'=>$worker
+            ]
 
         );
     }

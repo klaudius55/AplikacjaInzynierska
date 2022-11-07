@@ -24,7 +24,7 @@ class UnitController extends Controller
      */
     public function create()
     {
-        //
+        return view('units.form');
     }
 
     /**
@@ -57,7 +57,9 @@ class UnitController extends Controller
      */
     public function edit(Unit $unit)
     {
-        //
+        return view(
+            'units.form'
+        );
     }
 
     /**

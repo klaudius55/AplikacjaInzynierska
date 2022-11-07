@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Http\Livewire;
+namespace App\Http\Livewire\Types;
 
 use App\Models\Type;
+use LaravelViews\Facades\Header;
 use LaravelViews\Views\TableView;
 
 class TypesTableView extends TableView
@@ -12,6 +13,7 @@ class TypesTableView extends TableView
      */
     protected $model = Type::class;
 
+    public $searchBy = ['name'];
     /**
      * Sets the headers of the table as you want to be displayed
      *
@@ -19,7 +21,12 @@ class TypesTableView extends TableView
      */
     public function headers(): array
     {
-        return [];
+        return [
+            Header::title('ID')->sortBy('id'),
+            Header::title('Name')->sortBy('name'),
+            Header::title('Created')->sortBy('created_at'),
+            Header::title('Modified')->sortBy('update_at')
+        ];
     }
 
     /**
@@ -27,8 +34,13 @@ class TypesTableView extends TableView
      *
      * @param $model Current model for each row
      */
-    public function row($model): array
+    public function row(Type $type): array
     {
-        return [];
+        return [
+            $type->id,
+            $type->name,
+            $type->created_at,
+            $type->update_at
+        ];
     }
 }

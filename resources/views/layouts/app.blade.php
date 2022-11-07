@@ -15,9 +15,11 @@
         <!-- Scripts -->
         @wireUiScripts
         @vite(['resources/css/app.css', 'resources/js/app.js'])
-        <script src="//unpkg.com/alpinejs" defer></script>
+
     </head>
     <body class="font-sans antialiased">
+    <x-notifications />
+    <x-dialog />
         <div class="min-h-screen bg-gray-100">
             @include('layouts.navigation')
 
