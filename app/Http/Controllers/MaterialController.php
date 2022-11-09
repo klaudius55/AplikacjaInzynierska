@@ -24,7 +24,7 @@ class MaterialController extends Controller
      */
     public function create()
     {
-        //
+        return view('materials.form');
     }
 
     /**
@@ -57,7 +57,13 @@ class MaterialController extends Controller
      */
     public function edit(Material $material)
     {
-        //
+        return view(
+            'materials.form',
+            [
+                'material'=>$material
+            ]
+
+        );
     }
 
     /**
