@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Materials;
 
+use App\Models\Type;
 use Livewire\Component;
 use PhpParser\Node\Expr\Cast\Bool_;
 use WireUi\Traits\Actions;
@@ -13,6 +14,7 @@ class MaterialForm extends Component
     use Actions;
 
     public Material $material;
+    public Type $type;
     public Bool $editMode;
 
 
@@ -23,6 +25,18 @@ class MaterialForm extends Component
                 'required',
                 'string'
             ],
+            'material.thickness'=>[
+                'required',
+
+            ],
+            'material.type_id'=>[
+                'required',
+            ],
+            'material.unit_id'=>[
+                'required'
+            ],
+
+
         ];
 
     }
@@ -39,7 +53,7 @@ class MaterialForm extends Component
 
     public function save(){
         $this->validate();
-        $this->type->save();
+        $this->material->save();
         $this->notification()->success('successes');
         /*
         $this->notification()->success(

@@ -14,8 +14,26 @@
             <x-select
                 label="Wybierz grubość"
                 placeholder="w milimetrach"
-                :options="[0.5,0.8,1,1.5,2,2.5,3,4,5,6,8,10,12,15,16,20,22,25,30,35]"
-                wire:model.defer="material.grubość"
+                :options="[ 0.5 , 0.8 , 1 , 1.5 , 2 , 2.5 , 3 , 4 , 5 , 6 , 8 , 10 , 12 , 15 , 16 , 20 , 22 , 25 , 30 , 35 ]"
+                wire:model="material.thickness"
+            />
+            <x-select
+
+                name="material.type_id"
+                placeholder="Wybierz"
+                wire:model.defer="material.type_id"
+                :async-data="route('types.allOpen')"
+                option-label="name"
+                option-value="id"
+            />
+            <x-select
+
+                name="material.unit_id"
+                placeholder="Wybierz"
+                wire:model.defer="material.unit_id"
+                :async-data="route('units.allOpen')"
+                option-label="name"
+                option-value="id"
             />
         </div>
         <div>

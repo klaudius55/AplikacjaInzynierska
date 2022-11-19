@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Type;
 use App\Models\Unit;
 use Illuminate\Http\Request;
 
@@ -83,5 +84,12 @@ class UnitController extends Controller
     public function destroy(Unit $unit)
     {
         //
+    }
+
+    public function allOpen()
+    {
+        return Unit::all()->map(function ($value){
+            return ['name'=> $value->name, 'id' => $value->id];
+        })->toArray();
     }
 }

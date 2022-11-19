@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Unit extends Model
@@ -19,4 +20,9 @@ class Unit extends Model
         'created_at',
         'update_at',
         ];
+
+    public function materials()
+    {
+        return $this->hasMany(Material::class);
+    }
 }

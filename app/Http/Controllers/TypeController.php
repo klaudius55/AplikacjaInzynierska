@@ -84,4 +84,11 @@ class TypeController extends Controller
     {
         //
     }
+
+    public function allOpen()
+    {
+        return Type::all()->map(function ($value){
+            return ['name'=> $value->name, 'id' => $value->id];
+        })->toArray();
+    }
 }

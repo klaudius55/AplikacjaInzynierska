@@ -15,12 +15,15 @@ return new class extends Migration
     {
         Schema::create('materials', function (Blueprint $table) {
             $table->id();
-            $table->string('name',20);
-            $table->double('grubość');
+            $table->string('name');
+            $table->double('thickness');
+            $table->foreignId('type_id')->references('id')->on('types');
+            $table->foreignId('unit_id')->references('id')->on('units');
             $table->timestamps();
             $table->softDeletes();
         });
     }
+
 
     /**
      * Reverse the migrations.
@@ -29,6 +32,8 @@ return new class extends Migration
      */
     public function down()
     {
+
         Schema::dropIfExists('materials');
     }
+
 };

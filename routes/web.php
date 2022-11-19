@@ -44,10 +44,12 @@ Route::resource('materials', MaterialController::class)
     ->only(['index','create', 'store'])
     ->middleware(['auth', 'verified']);
 
+Route::get('/units/allOpen', [UnitController::class, 'allOpen'])->name('units.allOpen');
 Route::resource('units', UnitController::class)
     ->only(['index', 'create','edit'])
     ->middleware(['auth', 'verified']);
 
+Route::get('/types/allOpen', [TypeController::class, 'allOpen'])->name('types.allOpen');
 Route::resource('types', TypeController::class)
     ->only(['index', 'create','edit'])
     ->middleware(['auth', 'verified']);

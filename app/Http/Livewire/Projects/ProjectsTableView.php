@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire;
+namespace App\Http\Livewire\Projects;
 
 use App\Models\Project;
 use LaravelViews\Facades\Header;
