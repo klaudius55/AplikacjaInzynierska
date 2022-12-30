@@ -2,7 +2,9 @@
 
 namespace App\Http\Livewire\Tasks;
 
+use App\Actions\Tasks\SoftDeleteTask;
 use App\Models\Task;
+use LaravelViews\Actions\RedirectAction;
 use LaravelViews\Facades\Header;
 use LaravelViews\Views\TableView;
 
@@ -26,6 +28,7 @@ class TasksTableView extends TableView
             Header::title('Date')->sortBy('date'),
             Header::title('Project')->sortBy('projects_id'),
             Header::title('Worker')->sortBy('workers_id'),
+            Header::title('QuantityHours')->sortBy('quantityHours'),
             Header::title('Created')->sortBy('created_at'),
             Header::title('Modified')->sortBy('updated_at'),
             Header::title('Deleted')->sortBy('deleted_at'),
@@ -43,12 +46,22 @@ class TasksTableView extends TableView
             $task->id,
             $task->name,
             $task->date,
-            $task->projects_id,
-            $task->workers_id,
+            $task->projects->name?? 'brak przynależności',
+           // $task->workers->name?? 'no name',
+            $task->quantityHours,
             $task->created_at,
             $task->updated_at,
             $task->deleted_at,
 
+        ];
+    }
+
+    protected function actionsByRow()
+    {
+        return [
+            new RedirectAction('tasks.registerUsedMaterial','Add material','plus'),
+            new RedirectAction('tasks.edit', 'Edytuj', 'edit'),
+            new SoftDeleteTask()
         ];
     }
 }

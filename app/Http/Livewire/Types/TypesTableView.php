@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Types;
 
 use App\Models\Type;
+use LaravelViews\Actions\RedirectAction;
 use LaravelViews\Facades\Header;
 use LaravelViews\Views\TableView;
 
@@ -42,5 +43,15 @@ class TypesTableView extends TableView
             $type->created_at,
             $type->update_at
         ];
+    }
+    protected function actionsByRow()
+    {
+        return [
+            new RedirectAction('types.edit', 'Edytuj', 'edit'),
+            new RedirectAction('types.index','Usuń','delete'),
+        ];
+    }
+    public function softDelete(int $id){
+        dd($id);
     }
 }

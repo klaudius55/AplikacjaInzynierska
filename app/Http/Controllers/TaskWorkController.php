@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\WorkTime;
+use App\Models\TaskWorker;
 use Illuminate\Http\Request;
 
-class WorkTimeController extends Controller
+class TaskWorkController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +14,7 @@ class WorkTimeController extends Controller
      */
     public function index()
     {
-        return view('workTimes.index');
+        return view('TaskWorkers.index');
     }
 
     /**
@@ -41,10 +41,10 @@ class WorkTimeController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\WorkTime  $workTime
+     * @param  \App\Models\TaskWorker  $workTime
      * @return \Illuminate\Http\Response
      */
-    public function show(WorkTime $workTime)
+    public function show(TaskWorker $workTime)
     {
         //
     }
@@ -52,10 +52,10 @@ class WorkTimeController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\WorkTime  $workTime
+     * @param  \App\Models\TaskWorker  $workTime
      * @return \Illuminate\Http\Response
      */
-    public function edit(WorkTime $workTime)
+    public function edit(TaskWorker $workTime)
     {
         //
     }
@@ -64,10 +64,10 @@ class WorkTimeController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\WorkTime  $workTime
+     * @param  \App\Models\TaskWorker  $workTime
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, WorkTime $workTime)
+    public function update(Request $request, TaskWorker $workTime)
     {
         //
     }
@@ -75,10 +75,10 @@ class WorkTimeController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\WorkTime  $workTime
+     * @param  \App\Models\TaskWorker  $workTime
      * @return \Illuminate\Http\Response
      */
-    public function destroy(WorkTime $workTime)
+    public function destroy(TaskWorker $workTime)
     {
         //
     }

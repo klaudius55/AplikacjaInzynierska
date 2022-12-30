@@ -1,23 +1,23 @@
 <?php
 
-namespace App\Actions\Workers;
+namespace App\Actions\Tasks;
 
 use LaravelViews\Actions\Action;
 use LaravelViews\Views\View;
 
-class EditWorker extends Action
+class SoftDeleteTask extends Action
 {
     /**
      * Any title you want to be displayed
      * @var String
      * */
-    public $title = "Edit";
+    public $title = "Delete";
 
     /**
      * This should be a valid Feather icon string
      * @var String
      */
-    public $icon = "edit";
+    public $icon = "delete";
 
     /**
      * Execute the action when the user clicked on the button
@@ -27,8 +27,6 @@ class EditWorker extends Action
      */
     public function handle($model, View $view)
     {
-       // $model-> editMode = true;
-       // $model-> save();
-        return $model-> deleted_at === null;
+        // Your code here
     }
 }

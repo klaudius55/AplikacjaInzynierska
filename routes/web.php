@@ -6,7 +6,7 @@ use App\Http\Controllers\TaskController;
 use App\Http\Controllers\TypeController;
 use App\Http\Controllers\UnitController;
 use App\Http\Controllers\WorkerController;
-use App\Http\Controllers\WorkTimeController;
+use App\Http\Controllers\TaskWorkController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -28,20 +28,22 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
+Route::get('/worker/allOpen', [WorkerController::class, 'allOpen'])->name('workers.allOpen');
 Route::resource('workers', WorkerController::class)
     ->only(['index', 'create','edit'])
     ->middleware(['auth', 'verified']);
 
+Route::get('/tasks/registerUsedMaterial', [TaskController::class, 'registerUsedMaterial'])->name('tasks.registerUsedMaterial');
 Route::resource('tasks', TaskController::class)
-    ->only(['index', 'store'])
+    ->only(['index','create','edit','store'])
     ->middleware(['auth', 'verified']);
 
 Route::resource('projects', ProjectController::class)
-    ->only(['index', 'store'])
+    ->only(['index','create', 'edit'])
     ->middleware(['auth', 'verified']);
-
+Route::get('/materials/async', [MaterialController::class, 'async'])->name('materials.async');
 Route::resource('materials', MaterialController::class)
-    ->only(['index','create', 'store'])
+    ->only(['index','create', 'edit'])
     ->middleware(['auth', 'verified']);
 
 Route::get('/units/allOpen', [UnitController::class, 'allOpen'])->name('units.allOpen');
@@ -54,8 +56,12 @@ Route::resource('types', TypeController::class)
     ->only(['index', 'create','edit'])
     ->middleware(['auth', 'verified']);
 
-Route::resource('workTimes', WorkTimeController::class)
+Route::resource('TaskWorkers', TaskWorkController::class)
     ->only(['index', 'store'])
     ->middleware(['auth', 'verified']);
+
+/*Route::resource('material_task', \App\Http\Controllers\MaterialTaskController::class)
+    ->only(['index','create', 'edit'])
+    ->middleware(['auth', 'verified']);*/
 
 require __DIR__.'/auth.php';

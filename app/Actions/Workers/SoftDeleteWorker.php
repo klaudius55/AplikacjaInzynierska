@@ -1,12 +1,16 @@
 <?php
 
-namespace App\Actions;
+namespace App\Actions\Workers;
 
+use App\Models\Worker;
 use LaravelViews\Actions\Action;
+use LaravelViews\Actions\Confirmable;
 use LaravelViews\Views\View;
 
 class SoftDeleteWorker extends Action
 {
+    use Confirmable;
+
     /**
      * Any title you want to be displayed
      * @var String
@@ -28,7 +32,26 @@ class SoftDeleteWorker extends Action
     public function handle($model, View $view)
     {
         {
+            $view->dialog()->confirm([
+                'title' => 'Usunac',
+                'description' => $model->name,
+                'icon' => 'qestion',
+                'iconColor' => 'text-red-500',
+                'accept' => [
+                        'method'=> 'softDelete',
+            'params'=> $model->id
+            ],
+            'reject'=>[
+            'label' => 'no'
+        ]
+        ]
+            );
+            }
+
+        }
+        public function renderIf($model, View $view)
+        {
             return $model-> deleted_at === null;
         }
-    }
+
 }

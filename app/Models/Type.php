@@ -24,6 +24,5 @@ class Type extends Model
     public function materials()
     {
         return $this->hasMany(Material::class);
-
     }
 }

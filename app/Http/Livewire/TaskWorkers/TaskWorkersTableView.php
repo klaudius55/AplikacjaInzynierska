@@ -4,7 +4,7 @@ namespace App\Http\Livewire;
 
 use LaravelViews\Views\TableView;
 
-class WorkTimesTableView extends TableView
+class TaskWorkersTableView extends TableView
 {
     /**
      * Sets a model class to get the initial data

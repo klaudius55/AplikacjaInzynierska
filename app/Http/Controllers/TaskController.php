@@ -24,7 +24,7 @@ class TaskController extends Controller
      */
     public function create()
     {
-        //
+        return view('tasks.form');
     }
 
     /**
@@ -33,9 +33,11 @@ class TaskController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store()
     {
-        //
+        return view(
+            'tasks.add'
+        );
     }
 
     /**
@@ -69,7 +71,7 @@ class TaskController extends Controller
      */
     public function update(Request $request, Task $task)
     {
-        //
+
     }
 
     /**
@@ -81,5 +83,17 @@ class TaskController extends Controller
     public function destroy(Task $task)
     {
         //
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function registerUsedMaterial()
+    {
+        return view(
+            'tasks.registerUsedMaterial'
+        );
     }
 }

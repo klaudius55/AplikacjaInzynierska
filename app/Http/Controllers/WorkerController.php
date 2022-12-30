@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Worker;
+use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Query\Builder;
 use Illuminate\Http\Request;
 
 class WorkerController extends Controller
@@ -86,6 +88,38 @@ class WorkerController extends Controller
      */
     public function destroy(Worker $worker)
     {
-        //
+
     }
+
+    public function allOpen()
+    {
+        return Worker::all()->map(function ($value){
+            return ['name'=> $value->name, 'id' => $value->id];
+        })->toArray();
+    }
+    /*public function async(string|null $search, array|null $selected): Collection
+    {
+        return Worker::query()
+            ->select('worker_id', 'name')
+            ->orderBy('name')
+            ->when(
+                $search,
+                fn (Builder $query) => $query->where('name', 'like', "%{$search}%")
+            )
+            ->when(
+                $selected,
+                fn (Builder $query) => $query->whereIn(
+                    'worker_id',
+                    array_map(
+                        fn (array $item) => $item['worker_id'],
+                        array_filter(
+                            $selected,
+                            fn ($item) => (is_array($item) && isset($item['worker_id']))
+                        )
+                    )
+                ),
+                fn (Builder $query) => $query->limit(Worker::count())
+            )
+            ->get();
+    }*/
 }

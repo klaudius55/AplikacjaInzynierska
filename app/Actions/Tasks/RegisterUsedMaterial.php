@@ -1,23 +1,23 @@
 <?php
 
-namespace App\Actions\Workers;
+namespace App\Actions\Tasks;
 
 use LaravelViews\Actions\Action;
 use LaravelViews\Views\View;
 
-class EditWorker extends Action
+class RegisterUsedMaterial extends Action
 {
     /**
      * Any title you want to be displayed
      * @var String
      * */
-    public $title = "Edit";
+    public $title = "Add material";
 
     /**
      * This should be a valid Feather icon string
      * @var String
      */
-    public $icon = "edit";
+    public $icon = "plus";
 
     /**
      * Execute the action when the user clicked on the button
@@ -27,8 +27,6 @@ class EditWorker extends Action
      */
     public function handle($model, View $view)
     {
-       // $model-> editMode = true;
-       // $model-> save();
-        return $model-> deleted_at === null;
+        // Your code here
     }
 }

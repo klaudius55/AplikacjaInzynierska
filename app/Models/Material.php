@@ -36,5 +36,10 @@ class Material extends Model
         return $this->belongsTo(Unit::class, 'unit_id');
     }
 
+    public function MaterialTasks()
+    {
+        return $this->hasMany(MaterialTask::class);
+    }
+
 
 }

@@ -4,7 +4,9 @@ namespace App\Http\Livewire\Workers;
 
 
 use App\Actions\Workers\EditWorker;
+use App\Actions\Workers\SoftDeleteWorker;
 use App\Models\Worker;
+use Illuminate\Database\Eloquent\Builder;
 use LaravelViews\Actions\RedirectAction;
 use LaravelViews\Facades\Header;
 use LaravelViews\Views\TableView;
@@ -16,8 +18,13 @@ class WorkersTableView extends TableView
     use Actions;
 
     public $searchBy = ['name','surname'];
-    protected $model = Worker::class;
+   // protected $model = Worker::class;
     protected $paginate = 6;
+    public function repository(): Builder
+    {
+        return Worker::query()->withTrashed();
+
+    }
 
     /**
      * Sets the headers of the table as you want to be displayed
@@ -59,15 +66,13 @@ class WorkersTableView extends TableView
         return [
             // Will redirect to `route('user', $user->id)`
             new RedirectAction('workers.edit', 'Edytuj', 'edit'),
-            new RedirectAction('workers.index','Usuń','delete'),
+            new SoftDeleteWorker()
         ];
        }
        public function softDelete(int $id){
-        dd($id);
-        /*
+
         $worker = Worker::find($id);
         $worker->delete();
-        $this->notification()->success('Usunięto');
-*/
+
        }
 }

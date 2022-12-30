@@ -1,60 +1,46 @@
 <?php
 
-namespace App\Http\Livewire\Materials;
+namespace App\Http\Livewire\Tasks;
 
-use App\Models\Type;
+use App\Models\Task;
 use Livewire\Component;
 use WireUi\Traits\Actions;
-use App\Models\Material;
 
 
-class MaterialForm extends Component
+
+class TaskForm extends Component
 {
     use Actions;
 
-    public Material $material;
-    public Type $type;
+    public Task $task;
     public Bool $editMode;
 
 
     public function rules(){
 
         return[
-            'material.name'=>[
+            'task.name'=>[
                 'required',
-                'string',
-
+                'string'
             ],
-            'material.thickness'=>[
-                'required',
-
-
-            ],
-            'material.type_id'=>[
-                'required',
-            ],
-            'material.unit_id'=>[
-                'required'
-            ],
-
 
         ];
 
     }
 
-    public function mount(Material $material, Bool $editMode){
-        $this->material = $material;
+    public function mount(Task $task, Bool $editMode){
+        $this->task = $task;
         $this->editMode = $editMode;
     }
 
     public function render(){
-        return view('livewire.materials.materialForm');
+        return view('livewire.tasks.taskForm');
     }
 
 
     public function save(){
         $this->validate();
-        $this->material->save();
+        $this->task->save();
         $this->notification()->success('successes');
         /*
         $this->notification()->success(

@@ -1,60 +1,43 @@
 <?php
 
-namespace App\Http\Livewire\Materials;
+namespace App\Http\Livewire\Projects;
 
-use App\Models\Type;
 use Livewire\Component;
 use WireUi\Traits\Actions;
-use App\Models\Material;
+use App\Models\Project;
 
 
-class MaterialForm extends Component
+class ProjectForm extends Component
 {
     use Actions;
 
-    public Material $material;
-    public Type $type;
+    public Project $project;
     public Bool $editMode;
 
 
     public function rules(){
 
         return[
-            'material.name'=>[
-                'required',
+            'project.name'=>[
                 'string',
-
             ],
-            'material.thickness'=>[
-                'required',
-
-
-            ],
-            'material.type_id'=>[
-                'required',
-            ],
-            'material.unit_id'=>[
-                'required'
-            ],
-
-
         ];
 
     }
 
-    public function mount(Material $material, Bool $editMode){
-        $this->material = $material;
+    public function mount(Project $project, Bool $editMode){
+        $this->project = $project;
         $this->editMode = $editMode;
     }
 
     public function render(){
-        return view('livewire.materials.materialForm');
+        return view('livewire.projects.projectForm');
     }
 
 
     public function save(){
         $this->validate();
-        $this->material->save();
+        $this->project->save();
         $this->notification()->success('successes');
         /*
         $this->notification()->success(

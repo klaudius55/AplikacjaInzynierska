@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Materials;
 
 use App\Models\Material;
+use LaravelViews\Actions\RedirectAction;
 use LaravelViews\Facades\Header;
 use LaravelViews\Views\TableView;
 
@@ -13,7 +14,7 @@ class MaterialsTableView extends TableView
      */
     protected $model = Material::class;
 
-
+    public $searchBy = ['name','thickness','type_id'];
     /**
      * Sets the headers of the table as you want to be displayed
      *
@@ -52,5 +53,16 @@ class MaterialsTableView extends TableView
         $material->deleted_at,
 
     ];
+    }
+    protected function actionsByRow()
+    {
+        return [
+
+            new RedirectAction('materials.edit', 'Edytuj', 'edit'),
+            new RedirectAction('materials.index','Usuń','delete'),
+        ];
+    }
+    public function softDelete(int $id){
+        dd($id);
     }
 }

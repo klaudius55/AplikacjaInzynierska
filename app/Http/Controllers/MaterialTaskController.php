@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\UsedMaterial;
+use App\Models\MaterialTask;
 use Illuminate\Http\Request;
 
-class UsedMaterialController extends Controller
+class MaterialTaskController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -41,10 +41,10 @@ class UsedMaterialController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\UsedMaterial  $usedMaterial
+     * @param  \App\Models\MaterialTask  $usedMaterial
      * @return \Illuminate\Http\Response
      */
-    public function show(UsedMaterial $usedMaterial)
+    public function show(MaterialTask $usedMaterial)
     {
         //
     }
@@ -52,10 +52,10 @@ class UsedMaterialController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\UsedMaterial  $usedMaterial
+     * @param  \App\Models\MaterialTask  $usedMaterial
      * @return \Illuminate\Http\Response
      */
-    public function edit(UsedMaterial $usedMaterial)
+    public function edit(MaterialTask $usedMaterial)
     {
         //
     }
@@ -64,10 +64,10 @@ class UsedMaterialController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\UsedMaterial  $usedMaterial
+     * @param  \App\Models\MaterialTask  $usedMaterial
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, UsedMaterial $usedMaterial)
+    public function update(Request $request, MaterialTask $usedMaterial)
     {
         //
     }
@@ -75,10 +75,10 @@ class UsedMaterialController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\UsedMaterial  $usedMaterial
+     * @param  \App\Models\MaterialTask  $usedMaterial
      * @return \Illuminate\Http\Response
      */
-    public function destroy(UsedMaterial $usedMaterial)
+    public function destroy(MaterialTask $usedMaterial)
     {
         //
     }

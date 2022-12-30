@@ -4,6 +4,5 @@
             <x-primary-button class="mt-4">{{ __('Dodaj') }}</x-primary-button>
         </form>
         <livewire:materials.materials-table-view/>
-        </form>
     </div>
 </x-app-layout>

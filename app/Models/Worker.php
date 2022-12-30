@@ -18,8 +18,17 @@ protected $table = 'workers';
         'ID',
         'name',
         'surname',
+        'task_id',
         'created_at',
         'update_at',
     ];
+
+    public function tasks()
+    {
+       // return $this->belongsToMany(Task::class);
+        return $this->belongsToMany(Task::class)->withPivot('timeWork', 'date');
+
+    }
+
 
 }

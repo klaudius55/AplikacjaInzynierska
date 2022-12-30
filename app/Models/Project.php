@@ -19,4 +19,9 @@ class Project extends Model
         'created_at',
         'update_at',
     ];
+
+    public function tasks(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(Task::class);
+    }
 }

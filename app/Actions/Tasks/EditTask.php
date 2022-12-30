@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Actions\Workers;
+namespace App\Actions\Tasks;
 
 use LaravelViews\Actions\Action;
 use LaravelViews\Views\View;
 
-class EditWorker extends Action
+class EditTask extends Action
 {
     /**
      * Any title you want to be displayed
@@ -27,8 +27,6 @@ class EditWorker extends Action
      */
     public function handle($model, View $view)
     {
-       // $model-> editMode = true;
-       // $model-> save();
-        return $model-> deleted_at === null;
+        // Your code here
     }
 }
