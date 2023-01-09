@@ -6,10 +6,13 @@
         <div class="max-w-2xl mx-auto p-4 sm:p-6 lg:p-8">
 
             <x-input icon="pencil" label="Wprowadź nazwę zadania" placeholder="Zadanie" wire:model="task.name" />
-            <x-datetime-picker
-                label="Podaj date"
-                placeholder="Appointment Date"
-                wire:model.defer="normalPicker"
+            <x-select
+                name="task.project_id"
+                placeholder="Wybierz"
+                wire:model.defer="task.project_id"
+                :async-data="route('projects.async')"
+                option-label="name"
+                option-value="id"
             />
         </div>
         <div>

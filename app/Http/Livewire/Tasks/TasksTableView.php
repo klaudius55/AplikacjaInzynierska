@@ -10,6 +10,7 @@ use LaravelViews\Views\TableView;
 
 class TasksTableView extends TableView
 {
+    public $searchBy = ['name'];
     /**
      * Sets a model class to get the initial data
      */
@@ -24,14 +25,11 @@ class TasksTableView extends TableView
     {
         return [
             Header::title('ID')->sortBy('id'),
-            Header::title('Name')->sortBy('name'),
-            Header::title('Date')->sortBy('date'),
-            Header::title('Project')->sortBy('projects_id'),
-            Header::title('Worker')->sortBy('workers_id'),
-            Header::title('QuantityHours')->sortBy('quantityHours'),
-            Header::title('Created')->sortBy('created_at'),
-            Header::title('Modified')->sortBy('updated_at'),
-            Header::title('Deleted')->sortBy('deleted_at'),
+            Header::title(__('translation.attributes.name'))->sortBy('name'),
+            'Projekt',
+            Header::title(__('translation.attributes.created_at'))->sortBy('created_at'),
+            Header::title(__('translation.attributes.updated_at'))->sortBy('updated_at'),
+            Header::title(__('translation.attributes.deleted_at'))->sortBy('deleted_at'),
         ];
     }
 
@@ -45,10 +43,7 @@ class TasksTableView extends TableView
         return [
             $task->id,
             $task->name,
-            $task->date,
-            $task->projects->name?? 'brak przynależności',
-           // $task->workers->name?? 'no name',
-            $task->quantityHours,
+            $task->projects->name??"",
             $task->created_at,
             $task->updated_at,
             $task->deleted_at,
@@ -59,7 +54,7 @@ class TasksTableView extends TableView
     protected function actionsByRow()
     {
         return [
-            new RedirectAction('tasks.registerUsedMaterial','Add material','plus'),
+            new RedirectAction('materialtasks.create','Add material','plus'),
             new RedirectAction('tasks.edit', 'Edytuj', 'edit'),
             new SoftDeleteTask()
         ];

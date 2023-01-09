@@ -44,7 +44,10 @@ class WorkerForm extends Component
     public function save(){
         $this->validate();
         $this->worker->save();
-        $this->notification()->success('successes');
+        $this->notification()->success(
+            $title = 'Pracownik zapisany'
+        );
+    }
         /*
         $this->notification()->success(
             $title = $this->editMode
@@ -55,5 +58,5 @@ class WorkerForm extends Component
                :__('messages.successes.stored',['name'=>$this->worker->name])
         );
 */
-    }
+
 }

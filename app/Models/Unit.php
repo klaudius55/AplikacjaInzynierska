@@ -18,7 +18,7 @@ class Unit extends Model
         'ID',
         'name',
         'created_at',
-        'update_at',
+        'updated_at',
         ];
 
     public function materials()

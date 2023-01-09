@@ -21,7 +21,7 @@ class Material extends Model
         'type_id',
         'unit_id',
         'created_at',
-        'update_at',
+        'updated_at',
 
 
     ];
@@ -36,9 +36,10 @@ class Material extends Model
         return $this->belongsTo(Unit::class, 'unit_id');
     }
 
-    public function MaterialTasks()
+    public function task()
     {
-        return $this->hasMany(MaterialTask::class);
+        return $this->belongsToMany(Task::class)
+            ->withTimestamps();
     }
 
 

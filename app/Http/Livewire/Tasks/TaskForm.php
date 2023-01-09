@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Tasks;
 
+use App\Models\Project;
 use App\Models\Task;
 use Livewire\Component;
 use WireUi\Traits\Actions;
@@ -14,6 +15,7 @@ class TaskForm extends Component
 
     public Task $task;
     public Bool $editMode;
+    public Project $project;
 
 
     public function rules(){
@@ -23,7 +25,9 @@ class TaskForm extends Component
                 'required',
                 'string'
             ],
-
+            'task.project_id'=>[
+                'nullable',
+            ],
         ];
 
     }

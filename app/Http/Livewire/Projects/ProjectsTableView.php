@@ -8,6 +8,7 @@ use LaravelViews\Views\TableView;
 
 class ProjectsTableView extends TableView
 {
+    public $searchBy = ['name'];
     /**
      * Sets a model class to get the initial data
      */
@@ -22,7 +23,7 @@ class ProjectsTableView extends TableView
     {
         return [
             Header::title('ID')->sortBy('id'),
-            Header::title('Name')->sortBy('name'),
+            Header::title(__('translation.attributes.name'))->sortBy('name'),
         ];
     }
 

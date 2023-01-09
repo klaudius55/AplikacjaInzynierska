@@ -16,12 +16,12 @@ class Task extends Model
     protected $fillable = [
         'ID',
         'name',
-        'date',
         'project_id',
-        'worker_id',
         'created_at',
-        'update_at',
+        'updated_at',
     ];
+
+
 
     public function projects()
     {
@@ -30,13 +30,16 @@ class Task extends Model
 
     public function workers()
     {
-       // return $this->belongsToMany(Worker::class, 'worker_id')->withTrashed();
-        return $this->belongsToMany(Worker::class,)->withPivot('timeWork', 'date')->withTrashed();
+        return $this->belongsToMany(Worker::class,)
+            -> withPivot('timeWork', 'date');
+
     }
 
-    public function MaterialTasks()
+    public function materials()
     {
-        return $this->belongsToMany(MaterialTask::class);
+        return $this->belongsToMany(Material::class)
+            ->withPivot('quantity',)
+            ->withTimestamps();
     }
 
 }

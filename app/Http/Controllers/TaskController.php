@@ -35,9 +35,7 @@ class TaskController extends Controller
      */
     public function store()
     {
-        return view(
-            'tasks.add'
-        );
+
     }
 
     /**
@@ -96,4 +94,6 @@ class TaskController extends Controller
             'tasks.registerUsedMaterial'
         );
     }
+
+
 }

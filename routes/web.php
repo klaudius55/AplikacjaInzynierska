@@ -7,6 +7,7 @@ use App\Http\Controllers\TypeController;
 use App\Http\Controllers\UnitController;
 use App\Http\Controllers\WorkerController;
 use App\Http\Controllers\TaskWorkController;
+use App\Http\Controllers\MaterialTaskController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -38,9 +39,11 @@ Route::resource('tasks', TaskController::class)
     ->only(['index','create','edit','store'])
     ->middleware(['auth', 'verified']);
 
+Route::get('/projects/async', [ProjectController::class, 'async'])->name('projects.async');
 Route::resource('projects', ProjectController::class)
     ->only(['index','create', 'edit'])
     ->middleware(['auth', 'verified']);
+
 Route::get('/materials/async', [MaterialController::class, 'async'])->name('materials.async');
 Route::resource('materials', MaterialController::class)
     ->only(['index','create', 'edit'])
@@ -56,12 +59,13 @@ Route::resource('types', TypeController::class)
     ->only(['index', 'create','edit'])
     ->middleware(['auth', 'verified']);
 
-Route::resource('TaskWorkers', TaskWorkController::class)
+Route::resource('task_workers', TaskWorkController::class)
     ->only(['index', 'store'])
     ->middleware(['auth', 'verified']);
 
-/*Route::resource('material_task', \App\Http\Controllers\MaterialTaskController::class)
+
+Route::resource('materialtasks', MaterialTaskController::class)
     ->only(['index','create', 'edit'])
-    ->middleware(['auth', 'verified']);*/
+    ->middleware(['auth', 'verified']);
 
 require __DIR__.'/auth.php';

@@ -97,8 +97,10 @@ class WorkerController extends Controller
             return ['name'=> $value->name, 'id' => $value->id];
         })->toArray();
     }
-    /*public function async(string|null $search, array|null $selected): Collection
+   /* public function allOpen(Request $request): Collection
     {
+        $search = $request->get('search');
+        $selected = $request->get('selected');
         return Worker::query()
             ->select('worker_id', 'name')
             ->orderBy('name')

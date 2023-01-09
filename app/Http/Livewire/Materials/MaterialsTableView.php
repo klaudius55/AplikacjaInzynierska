@@ -24,13 +24,13 @@ class MaterialsTableView extends TableView
     {
         return [
             Header::title('ID')->sortBy('id'),
-            Header::title('Name')->sortBy('name'),
-            Header::title('Thickness')->sortBy('thickness'),
-            'Type',
-            'Unit',
-            Header::title('Created')->sortBy('created_at'),
-            Header::title('Modified')->sortBy('updated_at'),
-            Header::title('Deleted')->sortBy('deleted_at'),
+            Header::title(__('translation.attributes.name'))->sortBy('name'),
+            Header::title(__('translation.attributes.thickness'))->sortBy('thickness'),
+            'Typ',
+            'Jednostka',
+            Header::title(__('translation.attributes.created_at'))->sortBy('created_at'),
+            Header::title(__('translation.attributes.updated_at'))->sortBy('updated_at'),
+            Header::title(__('translation.attributes.deleted_at'))->sortBy('deleted_at'),
         ];
     }
 

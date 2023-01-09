@@ -24,9 +24,9 @@ class TypesTableView extends TableView
     {
         return [
             Header::title('ID')->sortBy('id'),
-            Header::title('Name')->sortBy('name'),
-            Header::title('Created')->sortBy('created_at'),
-            Header::title('Modified')->sortBy('update_at')
+            Header::title(__('translation.attributes.name'))->sortBy('name'),
+            Header::title(__('translation.attributes.created_at'))->sortBy('created_at'),
+            Header::title(__('translation.attributes.updated_at'))->sortBy('updated_at'),
         ];
     }
 

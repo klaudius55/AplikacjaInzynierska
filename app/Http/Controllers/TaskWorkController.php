@@ -14,7 +14,7 @@ class TaskWorkController extends Controller
      */
     public function index()
     {
-        return view('TaskWorkers.index');
+        return view('task_workers.index');
     }
 
     /**

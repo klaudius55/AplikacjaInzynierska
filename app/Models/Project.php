@@ -17,7 +17,7 @@ class Project extends Model
         'ID',
         'name',
         'created_at',
-        'update_at',
+        'updated_at',
     ];
 
     public function tasks(): \Illuminate\Database\Eloquent\Relations\HasMany

@@ -18,7 +18,7 @@
                 wire:model="material.thickness"
             />
             <x-select
-
+                label="Wybierz typ"
                 name="material.type_id"
                 placeholder="Wybierz"
                 wire:model.defer="material.type_id"
@@ -27,7 +27,7 @@
                 option-value="id"
             />
             <x-select
-
+                label="Wybierz jednostkę"
                 name="material.unit_id"
                 placeholder="Wybierz"
                 wire:model.defer="material.unit_id"

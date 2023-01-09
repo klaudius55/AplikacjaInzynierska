@@ -40,16 +40,6 @@ class TypeForm extends Component
     public function save(){
         $this->validate();
         $this->type->save();
-        $this->notification()->success('successes');
-        /*
-        $this->notification()->success(
-            $title = $this->editMode
-            ?__('messages.successes.updated_title')
-            :__('messages.successes.stored_title'),
-           $description = $this->editMode
-               ?__('messages.successes.updated',['name'=>$this->worker->name])
-               :__('messages.successes.stored',['name'=>$this->worker->name])
-        );
-*/
+        $this->notification()->success('Zapisane');
     }
 }

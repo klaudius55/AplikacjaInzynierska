@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\MaterialTask;
+use App\Models\Material_Task;
 use Illuminate\Http\Request;
 
 class MaterialTaskController extends Controller
@@ -24,7 +24,7 @@ class MaterialTaskController extends Controller
      */
     public function create()
     {
-        //
+        return view('materialtasks.form');
     }
 
     /**
@@ -57,7 +57,7 @@ class MaterialTaskController extends Controller
      */
     public function edit(MaterialTask $usedMaterial)
     {
-        //
+
     }
 
     /**

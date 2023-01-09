@@ -3,8 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Material;
-use Illuminate\Database\Eloquent\Collection;
-use Illuminate\Database\Query\Builder;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 
 class MaterialController extends Controller
@@ -90,24 +89,49 @@ class MaterialController extends Controller
     {
         //
     }
+/*
+    public function async (Request $request): Collection
 
-    public function async(string|null $search, array|null $selected): Collection
     {
         return Material::query()
-            ->select('id', 'name')
+            ->select(['*'])
             ->orderBy('name')
             ->when(
-                $search,
-                fn (Builder $query) => $query->where('name', 'like', "%{$search}%")
+                $request->search,
+                fn (Builder $query) => $query
+                    ->where('name', 'like', "%{$request->search}%")
+                    ->orWhere('thickness', 'like', "%{$request->search}%")
+
             )
             ->when(
-                $selected,
+                $request->exists('selected'),
+                fn (Builder $query) => $query->whereIn('id', $request->input('selected', [])),
+                fn (Builder $query) => $query->limit(10)
+            )
+
+            ->get();
+
+    }*/
+    public function async(Request $request)
+    {
+        return Material::query()
+            ->select(['*'])
+            ->orderBy('name')
+            ->orderBy('thickness')
+            ->when(
+                $request->search,
+                fn (Builder $query) => $query
+                    ->where('name', 'like', "%{$request->search}%")
+                    ->orWhere('thickness', 'like', "%{$request->search}%")
+            )
+            ->when(
+                $request->exists('selected'),
                 fn (Builder $query) => $query->whereIn(
                     'id',
                     array_map(
                         fn (array $item) => $item['id'],
                         array_filter(
-                            $selected,
+                            $request->input('selected',[]),
                             fn ($item) => (is_array($item) && isset($item['id']))
                         )
                     )
@@ -116,4 +140,5 @@ class MaterialController extends Controller
             )
             ->get();
     }
+
 }

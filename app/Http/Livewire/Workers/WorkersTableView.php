@@ -36,11 +36,11 @@ class WorkersTableView extends TableView
         return [
 
             Header::title('ID')->sortBy('id'),
-            Header::title('Name')->sortBy('name'),
-            Header::title('Surname')->sortBy('surname'),
-            Header::title('Created')->sortBy('created_at'),
-            Header::title('Modified')->sortBy('updated_at'),
-            Header::title('Deleted')->sortBy('deleted_at'),
+            Header::title('Imię')->sortBy('name'),
+            Header::title(__('translation.attributes.surname'))->sortBy('surname'),
+            Header::title(__('translation.attributes.created_at'))->sortBy('created_at'),
+            Header::title(__('translation.attributes.updated_at'))->sortBy('updated_at'),
+            Header::title(__('translation.attributes.deleted_at'))->sortBy('deleted_at'),
         ];
     }
 

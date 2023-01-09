@@ -1,16 +1,20 @@
 <?php
-namespace App\Http\Livewire\Tasks;
-use App\Models\Material;
-use App\Models\Task;
-use Livewire\Component;
-use WireUi\Traits\Actions;
 
-class TaskRegisterUsedMaterial extends Component
+namespace App\Http\Livewire\MaterialTasks;
+
+use App\Models\Material;
+use App\Models\Material_Task;
+use App\Models\Task;
+use WireUi\Traits\Actions;
+use Livewire\Component;
+
+class MaterialTaskForm extends Component
 {
     use Actions;
 
     public Task $task;
     public Material $material;
+    public Material_Task $material_Task;
 
 
 
@@ -19,22 +23,22 @@ class TaskRegisterUsedMaterial extends Component
         return[
             'material.name'=>[
                 '',
-        ],
+            ],
 
-            ];
+        ];
 
     }
 
 
 
     public function render(){
-        return view('livewire.tasks.taskRegisterUsedMaterial');
+        return view('livewire.materialtasks.materialtaskForm');
 
     }
     public function save(){
 
         $this->validate();
-        $this->materialtask->save();
+        $this->material_Task->save();
         $this->notification()->success('successes');
         /*
         $this->notification()->success(
@@ -47,4 +51,6 @@ class TaskRegisterUsedMaterial extends Component
         );
         */
     }
+
 }
+
