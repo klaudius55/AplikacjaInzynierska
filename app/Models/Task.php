@@ -30,16 +30,17 @@ class Task extends Model
 
     public function workers()
     {
-        return $this->belongsToMany(Worker::class,)
-            -> withPivot('timeWork', 'date');
+        return $this->belongsToMany(Worker::class)
+            -> withPivot('timeWork');
 
     }
 
     public function materials()
     {
         return $this->belongsToMany(Material::class)
-            ->withPivot('quantity',)
-            ->withTimestamps();
+            ->withPivot('quantity',);
+
     }
+
 
 }

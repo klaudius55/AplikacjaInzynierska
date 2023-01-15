@@ -15,10 +15,10 @@ return new class extends Migration
     {
         Schema::create('task_worker', function (Blueprint $table) {
             $table->id();
-            $table->double ('timeWork');
-            $table->date('date');
             $table-> unsignedBigInteger('task_id');
             $table->unsignedBigInteger('worker_id');
+            $table->double ('timeWork');
+            $table->timestamp('created_at');
         });
     }
 

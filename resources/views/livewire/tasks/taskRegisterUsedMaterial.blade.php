@@ -12,6 +12,7 @@
             :async-data="route('materials.async')"
             option-label="name"
             option-value="id"
+            description="type_id"
         />
         <x-input
             label="Ilosć"
@@ -25,6 +26,11 @@
             :async-data="route('workers.allOpen')"
             option-label="name"
             option-value="id"
+        />
+        <x-select
+            label="Ilość godzin"
+            placeholder="Wybierz ilość przepracowanych godzin"
+            :options="['0,5','1', '2', '3', '4','5','6','7','8','9','10','11','12']"
         />
 
         <div>

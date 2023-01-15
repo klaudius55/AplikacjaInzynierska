@@ -1,35 +1,35 @@
 <?php
 namespace App\Http\Livewire\Tasks;
-use App\Models\Material;
+use App\Models\Worker;
 use App\Models\Task;
-use Illuminate\Database\Eloquent\Collection;
 use Livewire\Component;
 use WireUi\Traits\Actions;
 
-class TaskRegisterUsedMaterial extends Component
+class TaskRegisterWorker extends Component
 {
     use Actions;
 
-    public Task $task;
-    public Material $material;
+    public Worker $worker;
+    public Task $task ;
 
 
 
     public function rules(){
 
         return[
-            'material.name'=>[
-                '',
-        ],
-
+            'worker.name'=>''
             ];
+    }
 
+    public function mount(Task $task)
+    {
+        $this->task = new Task();
     }
 
 
 
     public function render(){
-        return view('livewire.tasks.taskRegisterUsedMaterial');
+        return view('livewire.tasks.taskRegisterWorker');
 
     }
     public function save(){
@@ -57,7 +57,7 @@ class TaskRegisterUsedMaterial extends Component
 */
 
         $this->validate();
-        $this->task->save();
+        $this->task->workers()->attach(1)->save();
         $this->notification()->success('successes');
         /*
         $this->notification()->success(

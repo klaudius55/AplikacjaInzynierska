@@ -115,9 +115,9 @@ class MaterialController extends Controller
     public function async(Request $request)
     {
         return Material::query()
-            ->select(['*'])
-            ->orderBy('name')
-            ->orderBy('thickness')
+            ->select((['id','name']))
+            ->addSelect('thickness')
+            ->orderBy('name',)
             ->when(
                 $request->search,
                 fn (Builder $query) => $query
@@ -125,7 +125,7 @@ class MaterialController extends Controller
                     ->orWhere('thickness', 'like', "%{$request->search}%")
             )
             ->when(
-                $request->exists('selected'),
+                $request->exists('id'),
                 fn (Builder $query) => $query->whereIn(
                     'id',
                     array_map(

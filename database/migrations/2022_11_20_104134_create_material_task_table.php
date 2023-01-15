@@ -13,14 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('materialtasks', function (Blueprint $table) {
-            $table->id();
-            $table->unsignedBigInteger('material_id');
-            $table->unsignedBigInteger('task_id');
-            $table->double('quantity');
-            $table->date('created_at');
-            $table->date('updated_at');
-
+        Schema::create('material_task', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->integer('task_id');
+            $table->integer('material_id');
+            $table->double('quantity')->default();
+          //  $table->timestamp('created_at');
+          //  $table->timestamp('updated_at')->nullable();
 
            // $table->foreignId('material_id')->references('id')->on('materials');
           //  $table->foreignId('task_id')->references('id')->on('tasks');
@@ -34,6 +33,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('materialtasks');
+        Schema::dropIfExists('material_task');
     }
 };

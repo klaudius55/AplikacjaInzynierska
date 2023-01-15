@@ -36,10 +36,11 @@ class Material extends Model
         return $this->belongsTo(Unit::class, 'unit_id');
     }
 
-    public function task()
+    public function tasks()
     {
         return $this->belongsToMany(Task::class)
-            ->withTimestamps();
+            ->withPivot('quantity');
+
     }
 
 

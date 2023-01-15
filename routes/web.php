@@ -34,9 +34,10 @@ Route::resource('workers', WorkerController::class)
     ->only(['index', 'create','edit'])
     ->middleware(['auth', 'verified']);
 
+Route::get('/tasks/registerWorker', [TaskController::class, 'registerWorker'])->name('tasks.registerWorker');
 Route::get('/tasks/registerUsedMaterial', [TaskController::class, 'registerUsedMaterial'])->name('tasks.registerUsedMaterial');
 Route::resource('tasks', TaskController::class)
-    ->only(['index','create','edit','store'])
+    ->only(['index','create','edit','show','store'])
     ->middleware(['auth', 'verified']);
 
 Route::get('/projects/async', [ProjectController::class, 'async'])->name('projects.async');

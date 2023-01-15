@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Material;
 use App\Models\Task;
 use Illuminate\Http\Request;
+
 
 class TaskController extends Controller
 {
@@ -46,7 +48,15 @@ class TaskController extends Controller
      */
     public function show(Task $task)
     {
-        //
+      /*  $task = Task::find(1);
+
+        foreach ($task->materials as $material) {
+            echo $material->name;
+            echo $material->thickness;
+            echo $material->type_id;
+            echo $material->unit_id;
+        }*/
+        return view('tasks.show');
     }
 
     /**
@@ -95,5 +105,10 @@ class TaskController extends Controller
         );
     }
 
+    public function registerWorker(){
+        return view(
+            'tasks.registerWorker'
+        );
+    }
 
 }
