@@ -11,13 +11,13 @@ class SoftDeleteProject extends Action
      * Any title you want to be displayed
      * @var String
      * */
-    public $title = "My action title";
+    public $title = "Usuń";
 
     /**
      * This should be a valid Feather icon string
      * @var String
      */
-    public $icon = "";
+    public $icon = "delete";
 
     /**
      * Execute the action when the user clicked on the button
@@ -27,6 +27,29 @@ class SoftDeleteProject extends Action
      */
     public function handle($model, View $view)
     {
-        // Your code here
+        $view->dialog()->confirm([
+                'title' => __('translation.attributes.delete'),
+                'description' => __('translation.messages_projects.soft_delete',[
+                    'name' => $model->name
+                ]),
+                'icon' => 'question',
+                'iconColor' => 'text-red-500',
+                'accept' => [
+                    'label' => __('translation.yes'),
+                    'method'=> 'softDelete',
+                    'params'=> $model->id
+                ],
+                'reject'=>[
+                    'label' => __('translation.no')
+                ]
+            ]
+        );
     }
+
+
+    public function renderIf($model, View $view)
+    {
+        return $model-> deleted_at === null;
+    }
+
 }

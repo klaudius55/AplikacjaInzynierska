@@ -3,19 +3,20 @@
 namespace App\Actions\Workers;
 
 use App\Models\Worker;
+use Illuminate\Database\Eloquent\Model;
 use LaravelViews\Actions\Action;
 use LaravelViews\Actions\Confirmable;
 use LaravelViews\Views\View;
 
 class SoftDeleteWorker extends Action
 {
-    use Confirmable;
+
 
     /**
      * Any title you want to be displayed
      * @var String
      * */
-    public $title = "Delete";
+    public $title = "Usuń";
 
     /**
      * This should be a valid Feather icon string
@@ -31,24 +32,27 @@ class SoftDeleteWorker extends Action
      */
     public function handle($model, View $view)
     {
-        {
+
             $view->dialog()->confirm([
-                'title' => 'Usunac',
-                'description' => $model->name,
-                'icon' => 'qestion',
+                'title' => __('translation.attributes.delete'),
+                'description' => __('translation.messages_workers.soft_delete',[
+                    'name' => $model->name
+                ]),
+                'icon' => 'question',
                 'iconColor' => 'text-red-500',
                 'accept' => [
+                    'label' => __('translation.yes'),
                         'method'=> 'softDelete',
             'params'=> $model->id
             ],
             'reject'=>[
-            'label' => 'no'
+            'label' => __('translation.no')
         ]
         ]
             );
             }
 
-        }
+
         public function renderIf($model, View $view)
         {
             return $model-> deleted_at === null;

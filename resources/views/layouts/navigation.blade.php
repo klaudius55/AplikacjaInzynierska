@@ -33,9 +33,9 @@
                     <x-nav-link :href="route('types.index')" :active="request()->routeIs('types.index')">
                         {{ __('Types') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('workTimes.index')" :active="request()->routeIs('workTimes.index')">
-                        {{ __('WorkTimes') }}
-                    </x-nav-link>
+{{--                    <x-nav-link :href="route('workTimes.index')" :active="request()->routeIs('workTimes.index')">--}}
+{{--                        {{ __('WorkTimes') }}--}}
+{{--                    </x-nav-link>--}}
                 </div>
             </div>
 

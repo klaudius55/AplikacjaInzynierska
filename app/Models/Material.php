@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Models;
-
+//use App\Models\MaterialTask;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -26,6 +26,8 @@ class Material extends Model
 
     ];
 
+    //protected $appends = ['select_name'];
+
     public function types()
     {
         return $this->belongsTo(Type::class, 'type_id');
@@ -39,7 +41,8 @@ class Material extends Model
     public function tasks()
     {
         return $this->belongsToMany(Task::class)
-            ->withPivot('quantity');
+            ->withPivot('quantity')
+            ->using(MaterialTask::class);
 
     }
 

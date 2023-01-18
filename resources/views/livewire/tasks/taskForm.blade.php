@@ -5,10 +5,11 @@
     <form wire:submit.prevent="save">
         <div class="max-w-2xl mx-auto p-4 sm:p-6 lg:p-8">
 
-            <x-input icon="pencil" label="Wprowadź nazwę zadania" placeholder="Zadanie" wire:model="task.name" />
+            <x-input icon="pencil" label="Wprowadź nazwę zadania" placeholder="np. Taca" wire:model="task.name" />
             <x-select
+                label="Wybierz projekt"
                 name="task.project_id"
-                placeholder="Wybierz"
+                placeholder="Projekt może być pusty"
                 wire:model.defer="task.project_id"
                 :async-data="route('projects.async')"
                 option-label="name"

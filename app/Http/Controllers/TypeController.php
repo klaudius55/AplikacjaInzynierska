@@ -58,7 +58,10 @@ class TypeController extends Controller
     public function edit(Type $type)
     {
         return view(
-            'types.form'
+            'types.form',
+            [
+            'type'=>$type
+            ]
         );
     }
 

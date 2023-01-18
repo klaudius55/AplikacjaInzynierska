@@ -2,19 +2,28 @@
 
 namespace App\Http\Livewire\Types;
 
+use App\Actions\Types\RestoreType;
+use App\Actions\Types\SoftDeleteType;
 use App\Models\Type;
+use Illuminate\Database\Eloquent\Builder;
 use LaravelViews\Actions\RedirectAction;
 use LaravelViews\Facades\Header;
 use LaravelViews\Views\TableView;
+use WireUi\Traits\Actions;
 
 class TypesTableView extends TableView
 {
+    use Actions;
     /**
      * Sets a model class to get the initial data
      */
-    protected $model = Type::class;
+    public $searchBy = ['name','surname'];
+    protected $paginate = 10;
+    public function repository(): Builder
+    {
+        return Type::query()->withTrashed();
 
-    public $searchBy = ['name'];
+    }
     /**
      * Sets the headers of the table as you want to be displayed
      *
@@ -27,6 +36,7 @@ class TypesTableView extends TableView
             Header::title(__('translation.attributes.name'))->sortBy('name'),
             Header::title(__('translation.attributes.created_at'))->sortBy('created_at'),
             Header::title(__('translation.attributes.updated_at'))->sortBy('updated_at'),
+            Header::title(__('translation.attributes.deleted_at'))->sortBy('deleted_at'),
         ];
     }
 
@@ -41,17 +51,34 @@ class TypesTableView extends TableView
             $type->id,
             $type->name,
             $type->created_at,
-            $type->update_at
+            $type->update_at,
+            $type->deleted_at
         ];
     }
     protected function actionsByRow()
     {
         return [
             new RedirectAction('types.edit', 'Edytuj', 'edit'),
-            new RedirectAction('types.index','Usuń','delete'),
+            new SoftDeleteType(),
+            new RestoreType()
         ];
     }
     public function softDelete(int $id){
-        dd($id);
+
+        $type = Type::find($id);
+        $type->delete();
+        $this->notification()->success(
+            $title = __('translation.messages_types.successes.destroy_title'),
+            $description = __('translation.messages_types.successes.destroy',['name' => $type->name])
+        );
+    }
+
+    public function restore(int $id){
+        $type = Type::withTrashed()->find($id);
+        $type->restore();
+        $this->notification()->success(
+            $title = __('translation.messages_types.successes.restore_title'),
+            $description = __('translation.messages_types.successes.restore',['name' => $type->name])
+        );
     }
 }

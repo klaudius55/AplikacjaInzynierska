@@ -38,7 +38,8 @@ class Task extends Model
     public function materials()
     {
         return $this->belongsToMany(Material::class)
-            ->withPivot('quantity',);
+            ->withPivot('quantity',)
+            ->using(MaterialTask::class);
 
     }
 

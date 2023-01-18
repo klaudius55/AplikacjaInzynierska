@@ -11,13 +11,13 @@ class EditUnit extends Action
      * Any title you want to be displayed
      * @var String
      * */
-    public $title = "My action title";
+    public $title = "Edytuj";
 
     /**
      * This should be a valid Feather icon string
      * @var String
      */
-    public $icon = "";
+    public $icon = "edit";
 
     /**
      * Execute the action when the user clicked on the button

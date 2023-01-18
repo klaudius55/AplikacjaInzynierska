@@ -2,7 +2,9 @@
 
 namespace App\Http\Livewire\Tasks;
 
+use App\Http\Livewire\Materials\MaterialsTableView;
 use App\Models\Material;
+use App\Models\MaterialTask;
 use App\Models\Task;
 use Illuminate\Database\Eloquent\Builder;
 use LaravelViews\Views\TableView;
@@ -14,9 +16,16 @@ class MaterialTaskTableView extends TableView
      */
     public function repository(): Builder
     {
-        $query = Task::query()
-            ->with(['materials']);
+      //  dd(request()->task);
+       // dd(MaterialTask::first()->task);
+
+        $query = MaterialTask::query()
+            ->where('task_id',request()->task->id
+            );
+
         return $query;
+       // return Task::with('materials');
+        // Materials::whereRelation('task','task_id','=',$task_id)
     }
 
     /* public function repository(): Builder
@@ -41,7 +50,11 @@ class MaterialTaskTableView extends TableView
     public function headers(): array
     {
         return [
-            'materials'
+            'Materiał',
+            'Grubość',
+            'Rodzaj materiału',
+            'Jednostka',
+            'Ilość'
         ];
     }
 
@@ -50,15 +63,16 @@ class MaterialTaskTableView extends TableView
      *
      * @param $model Current model for each row
      */
-    public function row(Task $task): array
+    public function row(MaterialTask $materialtask ): array
     {
 
 
         return [
-
-            $task->materials
-            // $task->append('materials')
-            // $task->load(['materials'=> fn($query)=>$query->where('material_task.id')])
+            $materialtask->material->name,
+            $materialtask->material->thickness,
+            $materialtask->material->types->name,
+            $materialtask->material->units->name,
+            $materialtask->quantity,
         ];
     }
 }

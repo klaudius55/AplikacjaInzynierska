@@ -55,7 +55,7 @@ class MaterialForm extends Component
     public function save(){
         $this->validate();
         $this->material->save();
-        $this->notification()->success('successes');
+        $this->notification()->success('Zapisano');
         /*
         $this->notification()->success(
             $title = $this->editMode

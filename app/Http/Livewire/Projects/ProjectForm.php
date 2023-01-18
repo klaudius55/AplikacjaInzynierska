@@ -38,16 +38,14 @@ class ProjectForm extends Component
     public function save(){
         $this->validate();
         $this->project->save();
-        $this->notification()->success('successes');
-        /*
         $this->notification()->success(
             $title = $this->editMode
-            ?__('messages.successes.updated_title')
-            :__('messages.successes.stored_title'),
-           $description = $this->editMode
-               ?__('messages.successes.updated',['name'=>$this->worker->name])
-               :__('messages.successes.stored',['name'=>$this->worker->name])
+                ?__('translation.messages_projects.successes.updated_title')
+                :__('translation.messages_projects.successes.stored_title'),
+            $description = $this->editMode
+                ?__('translation.messages_projects.successes.updated',['name'=>$this->project->name])
+                :__('translation.messages_projects.successes.stored',['name'=>$this->project->name])
         );
-*/
+        $this->editMode = true;
     }
 }

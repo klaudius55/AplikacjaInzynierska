@@ -58,7 +58,7 @@ class TaskRegisterUsedMaterial extends Component
 
         $this->validate();
         $this->task->save();
-        $this->notification()->success('successes');
+        $this->notification()->success('Zapisano');
         /*
         $this->notification()->success(
         $title = $this->editMode

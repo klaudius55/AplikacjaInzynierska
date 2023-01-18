@@ -3,7 +3,7 @@
 namespace App\Http\Livewire\Workers;
 
 
-use App\Actions\Workers\EditWorker;
+use App\Actions\Workers\RestoreWorker;
 use App\Actions\Workers\SoftDeleteWorker;
 use App\Models\Worker;
 use Illuminate\Database\Eloquent\Builder;
@@ -18,7 +18,6 @@ class WorkersTableView extends TableView
     use Actions;
 
     public $searchBy = ['name','surname'];
-   // protected $model = Worker::class;
     protected $paginate = 6;
     public function repository(): Builder
     {
@@ -66,13 +65,26 @@ class WorkersTableView extends TableView
         return [
             // Will redirect to `route('user', $user->id)`
             new RedirectAction('workers.edit', 'Edytuj', 'edit'),
-            new SoftDeleteWorker()
+            new SoftDeleteWorker(),
+            new RestoreWorker()
         ];
        }
        public function softDelete(int $id){
 
         $worker = Worker::find($id);
         $worker->delete();
+        $this->notification()->success(
+            $title = __('translation.messages_workers.successes.destroy_title'),
+            $description = __('translation.messages_workers.successes.destroy',['name' => $worker->name])
+        );
+       }
 
+       public function restore(int $id){
+        $worker = Worker::withTrashed()->find($id);
+        $worker->restore();
+        $this->notification()->success(
+            $title = __('translation.messages_workers.successes.restore_title'),
+            $description = __('translation.messages_workers.successes.restore',['name' => $worker->name])
+        );
        }
 }

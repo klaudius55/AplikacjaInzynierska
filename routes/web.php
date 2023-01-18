@@ -65,8 +65,8 @@ Route::resource('task_workers', TaskWorkController::class)
     ->middleware(['auth', 'verified']);
 
 
-Route::resource('materialtasks', MaterialTaskController::class)
+/*Route::resource('materialtasks', MaterialTaskController::class)
     ->only(['index','create', 'edit'])
-    ->middleware(['auth', 'verified']);
+    ->middleware(['auth', 'verified']);*/
 
 require __DIR__.'/auth.php';

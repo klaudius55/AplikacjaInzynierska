@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Workers;
 
+use Dotenv\Util\Str;
 use Livewire\Component;
 use PhpParser\Node\Expr\Cast\Bool_;
 use WireUi\Traits\Actions;
@@ -30,6 +31,13 @@ class WorkerForm extends Component
         ];
 
     }
+    public function getValidationAttributes()
+    {
+        return[
+            'name'=> __('Imię'),
+            'surname'=> __('translation.attributes.surname')
+        ];
+    }
 
     public function mount(Worker $worker, Bool $editMode){
         $this->worker = $worker;
@@ -45,18 +53,13 @@ class WorkerForm extends Component
         $this->validate();
         $this->worker->save();
         $this->notification()->success(
-            $title = 'Pracownik zapisany'
-        );
-    }
-        /*
-        $this->notification()->success(
             $title = $this->editMode
-            ?__('messages.successes.updated_title')
-            :__('messages.successes.stored_title'),
-           $description = $this->editMode
-               ?__('messages.successes.updated',['name'=>$this->worker->name])
-               :__('messages.successes.stored',['name'=>$this->worker->name])
+                ?__('translation.messages_workers.successes.updated_title')
+                :__('translation.messages_workers.successes.stored_title'),
+            $description = $this->editMode
+                ?__('translation.messages_workers.successes.updated',['name'=>$this->worker->name])
+                :__('translation.messages_workers.successes.stored',['name'=>$this->worker->name])
         );
-*/
-
+        $this->editMode = true;
+    }
 }

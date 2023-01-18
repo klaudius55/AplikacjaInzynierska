@@ -8,11 +8,11 @@
             label="Wybierz zużyty materiał"
             name="materials.async"
             wire:model.defer="materials.async"
-            placeholder="Select some user"
+            placeholder="Wbierz materiał"
             :async-data="route('materials.async')"
             option-label="name"
             option-value="id"
-            description="type_id"
+            descriptions="thickness"
         />
         <x-input
             label="Ilosć"
@@ -34,8 +34,8 @@
         />
 
         <div>
-            <x-button href="{{route('tasks.index')}}" label="{{('back')}}"/>
-            <x-button type="submit" primary label="{{('save')}}" spinner/>
+            <x-button href="{{route('tasks.index')}}" label="{{(__('translation.attributes.back'))}}"/>
+            <x-button type="submit" primary label="{{(__('translation.attributes.save'))}}" spinner/>
         </div>
     </form>
 </div>

@@ -58,7 +58,7 @@ class TaskRegisterWorker extends Component
 
         $this->validate();
         $this->task->workers()->attach(1)->save();
-        $this->notification()->success('successes');
+        $this->notification()->success('Zapisano');
         /*
         $this->notification()->success(
         $title = $this->editMode

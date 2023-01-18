@@ -3,7 +3,6 @@
 namespace App\Http\Livewire\Units;
 
 use Livewire\Component;
-use PhpParser\Node\Expr\Cast\Bool_;
 use WireUi\Traits\Actions;
 use App\Models\Unit;
 
@@ -40,9 +39,14 @@ class UnitForm extends Component
     public function save(){
         $this->validate();
         $this->unit->save();
-        $this->notification()->success('Zapisane');
-
-
-
+        $this->notification()->success(
+            $title = $this->editMode
+                ?__('translation.messages_units.successes.updated_title')
+                :__('translation.messages_units.successes.stored_title'),
+            $description = $this->editMode
+                ?__('translation.messages_units.successes.updated',['name'=>$this->unit->name])
+                :__('translation.messages_units.successes.stored',['name'=>$this->unit->name])
+        );
+        $this->editMode = true;
     }
 }
