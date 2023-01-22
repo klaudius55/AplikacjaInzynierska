@@ -31,7 +31,8 @@ class Task extends Model
     public function workers()
     {
         return $this->belongsToMany(Worker::class)
-            -> withPivot('timeWork');
+            -> withPivot('timeWork')
+            ->using(TaskWorker::class);
 
     }
 

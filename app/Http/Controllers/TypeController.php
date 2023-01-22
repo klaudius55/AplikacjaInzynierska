@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Type;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 
 class TypeController extends Controller
@@ -88,10 +89,26 @@ class TypeController extends Controller
         //
     }
 
-    public function allOpen()
+    public function allOpen(Request $request)
     {
-        return Type::all()->map(function ($value){
-            return ['name'=> $value->name, 'id' => $value->id];
-        })->toArray();
+        return Type::query()
+            ->select(['*'])
+            ->orderBy('name')
+            ->when(
+                $request->search,
+                fn (Builder $query) => $query->where('name', 'like', "%{$request->search}%")
+            )
+            ->when(
+                $request->exists('selected'),
+                fn (Builder $query) => $query->whereIn('id', $request->selected),
+                fn (Builder $query) => $query->limit(Type::count())
+            )
+            ->get()
+            ->map(function ($item) {
+                return collect([
+                    'id' => $item->id,
+                    'name' => $item->name
+                ]);
+            });
     }
 }

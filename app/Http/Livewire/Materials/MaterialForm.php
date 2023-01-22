@@ -36,10 +36,16 @@ class MaterialForm extends Component
             'material.unit_id'=>[
                 'required'
             ],
-
-
         ];
-
+    }
+    public function getValidationAttributes()
+    {
+        return[
+            'name'=> __('materiał'),
+            'thickness'=>__('grubość'),
+            'type_id'=>__('typ'),
+            'unit_id'=>__('jednostka')
+        ];
     }
 
     public function mount(Material $material, Bool $editMode){
@@ -55,16 +61,14 @@ class MaterialForm extends Component
     public function save(){
         $this->validate();
         $this->material->save();
-        $this->notification()->success('Zapisano');
-        /*
         $this->notification()->success(
-            $title = $this->editMode
-            ?__('messages.successes.updated_title')
-            :__('messages.successes.stored_title'),
-           $description = $this->editMode
-               ?__('messages.successes.updated',['name'=>$this->worker->name])
-               :__('messages.successes.stored',['name'=>$this->worker->name])
+        $title = $this->editMode
+            ?__('translation.messages_materials.successes.updated_title')
+            :__('translation.messages_materials.successes.stored_title'),
+            $description = $this->editMode
+                ?__('translation.messages_materials.successes.updated',['name'=>$this->material->name])
+                :__('translation.messages_materials.successes.stored',['name'=>$this->material->name])
         );
-*/
+        $this->editMode = true;
     }
 }

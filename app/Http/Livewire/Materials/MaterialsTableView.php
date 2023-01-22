@@ -2,17 +2,26 @@
 
 namespace App\Http\Livewire\Materials;
 
+use App\Actions\Materials\RestoreMaterial;
+use App\Actions\Materials\SoftDeleteMaterial;
+use App\Actions\Units\SoftDeleteUnit;
 use App\Models\Material;
+use Illuminate\Database\Eloquent\Builder;
 use LaravelViews\Actions\RedirectAction;
 use LaravelViews\Facades\Header;
 use LaravelViews\Views\TableView;
+use WireUi\Traits\Actions;
 
 class MaterialsTableView extends TableView
 {
+    use Actions;
     /**
      * Sets a model class to get the initial data
      */
-    protected $model = Material::class;
+    public function repository(): Builder
+    {
+        return Material::query()->withTrashed();
+    }
 
     public $searchBy = ['name','thickness','type_id'];
     /**
@@ -59,10 +68,26 @@ class MaterialsTableView extends TableView
         return [
 
             new RedirectAction('materials.edit', 'Edytuj', 'edit'),
-            new RedirectAction('materials.index','Usuń','delete'),
+            new SoftDeleteMaterial(),
+            new RestoreMaterial()
         ];
     }
     public function softDelete(int $id){
-        dd($id);
+
+        $material = Material::find($id);
+        $material->delete();
+        $this->notification()->success(
+            $title = __('translation.messages_materials.successes.destroy_title'),
+            $description = __('translation.messages_materials.successes.destroy',['name' => $material->name])
+        );
+    }
+
+    public function restore(int $id){
+        $material = Material::withTrashed()->find($id);
+        $material->restore();
+        $this->notification()->success(
+            $title = __('translation.messages_materials.successes.restore_title'),
+            $description = __('translation.messages_materials.successes.restore',['name' => $material->name])
+        );
     }
 }

@@ -22,7 +22,12 @@ class ProjectForm extends Component
                 'string',
             ],
         ];
-
+    }
+    public function getValidationAttributes()
+    {
+        return[
+            'name'=> __('projekt')
+        ];
     }
 
     public function mount(Project $project, Bool $editMode){

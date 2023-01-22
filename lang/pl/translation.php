@@ -97,4 +97,42 @@ return[
             'description' => 'Czy aby na pewno chcesz przywrócić typ  :name'
         ]
     ],
+    'messages_materials' => [
+        'successes' => [
+            'stored'=> 'Dodano materiał :name',
+            'updated'=> 'Zaaktualizowano materiał  :name',
+            'stored_title'=> 'Dodano materiał  ',
+            'updated_title'=> 'Zaaktualizowano materiał ',
+            'destroy'=> 'Usunięto materiał  :name',
+            'destroy_title'=> 'Usunięto materiał ',
+            'restore_title'=> 'Przywrócono materiał ',
+            'restore'=> 'Przywrócno materiał  :name'
+        ],
+        'soft_delete' => [
+            'Czy aby na pewno chcesz usunąć materiał  :name',
+        ],
+        'restore' => [
+            'title'=>'Przywrócić materiał ',
+            'description' => 'Czy aby na pewno chcesz przywrócić materiał  :name'
+        ]
+    ],
+    'messages_tasks' => [
+        'successes' => [
+            'stored'=> 'Dodano zadanie :name',
+            'updated'=> 'Zaaktualizowano zadanie  :name',
+            'stored_title'=> 'Dodano zadanie  ',
+            'updated_title'=> 'Zaaktualizowano zadanie ',
+            'destroy'=> 'Usunięto zadanie  :name',
+            'destroy_title'=> 'Usunięto zadanie ',
+            'restore_title'=> 'Przywrócono zadanie ',
+            'restore'=> 'Przywrócno zadanie  :name'
+        ],
+        'soft_delete' => [
+            'Czy aby na pewno chcesz usunąć zadanie  :name',
+        ],
+        'restore' => [
+            'title'=>'Przywrócić zadanie ',
+            'description' => 'Czy aby na pewno chcesz przywrócić zadanie  :name'
+        ]
+    ],
 ];

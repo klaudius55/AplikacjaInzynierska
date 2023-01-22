@@ -18,11 +18,7 @@ return new class extends Migration
             $table->integer('task_id');
             $table->integer('material_id');
             $table->double('quantity')->default();
-          //  $table->timestamp('created_at');
-          //  $table->timestamp('updated_at')->nullable();
-
-           // $table->foreignId('material_id')->references('id')->on('materials');
-          //  $table->foreignId('task_id')->references('id')->on('tasks');
+            $table->timestamp('created_at');
         });
     }
 

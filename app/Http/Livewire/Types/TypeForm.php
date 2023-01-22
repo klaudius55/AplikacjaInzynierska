@@ -26,6 +26,12 @@ class TypeForm extends Component
         ];
 
     }
+    public function getValidationAttributes()
+    {
+        return[
+            'name'=> __('typ')
+        ];
+    }
 
     public function mount(Type $type, Bool $editMode){
         $this->type = $type;

@@ -25,6 +25,12 @@ class UnitForm extends Component
         ];
 
     }
+    public function getValidationAttributes()
+    {
+        return[
+            'name'=> __('jednostka')
+        ];
+    }
 
     public function mount(Unit $unit, Bool $editMode){
         $this->unit = $unit;

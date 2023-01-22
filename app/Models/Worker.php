@@ -25,9 +25,9 @@ protected $table = 'workers';
 
     public function tasks()
     {
-       // return $this->belongsToMany(Task::class);
-        return $this->belongsToMany(Task::class)->withPivot('timeWork', 'date');
-
+        return $this->belongsToMany(Task::class)
+            ->withPivot('timeWork')
+            ->using(TaskWorker::class);
     }
 
 

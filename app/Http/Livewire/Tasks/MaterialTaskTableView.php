@@ -2,11 +2,10 @@
 
 namespace App\Http\Livewire\Tasks;
 
-use App\Http\Livewire\Materials\MaterialsTableView;
-use App\Models\Material;
+
 use App\Models\MaterialTask;
-use App\Models\Task;
 use Illuminate\Database\Eloquent\Builder;
+use LaravelViews\Facades\Header;
 use LaravelViews\Views\TableView;
 
 class MaterialTaskTableView extends TableView
@@ -22,31 +21,9 @@ class MaterialTaskTableView extends TableView
         $query = MaterialTask::query()
             ->where('task_id',request()->task->id
             );
-
         return $query;
-       // return Task::with('materials');
-        // Materials::whereRelation('task','task_id','=',$task_id)
     }
 
-    /* public function repository(): Builder
-     {
-         return Task::query()
-             ->with('materials','task');
-         }
-        /* $query = Task::query()
-             ->with(['materials']);
-         if (request()->user()->can('name', Task::class)) {
-                 $query->withTrashed();
-
-             $query->withTrashed();
-         } return $query;
-
-
-    /**
-     * Sets the headers of the table as you want to be displayed
-     *
-     * @return array<string> Array of headers
-     */
     public function headers(): array
     {
         return [
@@ -54,7 +31,8 @@ class MaterialTaskTableView extends TableView
             'Grubość',
             'Rodzaj materiału',
             'Jednostka',
-            'Ilość'
+            'Ilość',
+            Header::title(__('translation.attributes.created_at'))->sortBy('created_at'),
         ];
     }
 
@@ -68,11 +46,12 @@ class MaterialTaskTableView extends TableView
 
 
         return [
-            $materialtask->material->name,
-            $materialtask->material->thickness,
-            $materialtask->material->types->name,
-            $materialtask->material->units->name,
+            $materialtask->material->name??'',
+            $materialtask->material->thickness??'',
+            $materialtask->material->types->name??'',
+            $materialtask->material->units->name??'',
             $materialtask->quantity,
+            $materialtask->created_at
         ];
     }
 }

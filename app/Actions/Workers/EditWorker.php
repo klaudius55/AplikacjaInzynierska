@@ -27,8 +27,6 @@ class EditWorker extends Action
      */
     public function handle($model, View $view)
     {
-       // $model-> editMode = true;
-       // $model-> save();
         return $model-> deleted_at === null;
     }
 }

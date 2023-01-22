@@ -11,7 +11,7 @@ class EditTask extends Action
      * Any title you want to be displayed
      * @var String
      * */
-    public $title = "Edit";
+    public $title = "Usuń";
 
     /**
      * This should be a valid Feather icon string
@@ -27,6 +27,6 @@ class EditTask extends Action
      */
     public function handle($model, View $view)
     {
-        // Your code here
+        return $model-> deleted_at === null;
     }
 }

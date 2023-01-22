@@ -27,6 +27,10 @@ class RegisterUsedMaterial extends Action
      */
     public function handle($model, View $view)
     {
-        // Your code here
+
+    }
+        public function renderIf($model, View $view)
+    {
+        return $model-> deleted_at === null;
     }
 }

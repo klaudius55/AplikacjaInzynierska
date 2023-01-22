@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Type;
 use App\Models\Unit;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 
 class UnitController extends Controller
@@ -86,10 +87,26 @@ class UnitController extends Controller
         //
     }
 
-    public function allOpen()
+    public function allOpen(Request $request)
     {
-        return Unit::all()->map(function ($value){
-            return ['name'=> $value->name, 'id' => $value->id];
-        })->toArray();
+        return Unit::query()
+            ->select(['*'])
+            ->orderBy('name')
+            ->when(
+                $request->search,
+                fn (Builder $query) => $query->where('name', 'like', "%{$request->search}%")
+            )
+            ->when(
+                $request->exists('selected'),
+                fn (Builder $query) => $query->whereIn('id', $request->selected),
+                fn (Builder $query) => $query->limit(Unit::count())
+            )
+            ->get()
+            ->map(function ($item) {
+                return collect([
+                    'id' => $item->id,
+                    'name' => $item->name
+                ]);
+            });
     }
 }

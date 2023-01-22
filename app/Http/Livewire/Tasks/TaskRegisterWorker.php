@@ -1,5 +1,7 @@
 <?php
 namespace App\Http\Livewire\Tasks;
+
+use App\Models\TaskWorker;
 use App\Models\Worker;
 use App\Models\Task;
 use Livewire\Component;
@@ -9,9 +11,11 @@ class TaskRegisterWorker extends Component
 {
     use Actions;
 
-    public Worker $worker;
-    public Task $task ;
-
+//    public Worker $worker;
+    public Task $task;
+//    public TaskWorker $taskWorker;
+    public float $timeWork = 0;
+    public int|null $worker_id = null;
 
 
     public function rules(){
@@ -28,36 +32,17 @@ class TaskRegisterWorker extends Component
 
 
 
-    public function render(){
-        return view('livewire.tasks.taskRegisterWorker');
+    public function render()
+    {
+        return view('livewire.tasks.taskRegisterWorker', [
+            "task" => $this->task
+        ]);
 
     }
-    public function save(){
-   /* public function push()
+
+    public function save()
     {
-        if (! $this->save()) {
-            return false;
-        }
-
-        // To sync all of the relationships to the database, we will simply spin through
-        // the relationships and save each model via this "push" method, which allows
-        // us to recurse into all of these nested relations for the model instance.
-        foreach ($this->material as $tasks) {
-            $tasks = $tasks instanceof Collection
-                ? $tasks->all() : [$tasks];
-
-            foreach (array_filter($tasks) as $task) {
-                if (! $task->push()) {
-                    return false;
-                }
-            }
-        }
-
-        return true;
-*/
-
-        $this->validate();
-        $this->task->workers()->attach(1)->save();
+        $this->task->workers()->attach([$this->worker_id => ['timeWork' => $this->timeWork]]);
         $this->notification()->success('Zapisano');
         /*
         $this->notification()->success(

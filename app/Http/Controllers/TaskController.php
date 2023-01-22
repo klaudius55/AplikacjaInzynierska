@@ -67,7 +67,13 @@ class TaskController extends Controller
      */
     public function edit(Task $task)
     {
-        //
+        return view(
+            'tasks.form',
+            [
+                'task'=>$task
+            ]
+
+        );
     }
 
     /**
@@ -108,6 +114,13 @@ class TaskController extends Controller
     public function registerWorker(){
         return view(
             'tasks.registerWorker'
+        );
+    }
+
+    public function showWorker(Task $task)
+    {
+        return view(
+            'tasks.showWorker'
         );
     }
 

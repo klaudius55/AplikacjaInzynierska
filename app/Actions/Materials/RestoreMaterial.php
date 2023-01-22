@@ -1,23 +1,23 @@
 <?php
 
-namespace App\Actions\Tasks;
+namespace App\Actions\Materials;
 
 use LaravelViews\Actions\Action;
 use LaravelViews\Views\View;
 
-class SoftDeleteTask extends Action
+class RestoreMaterial extends Action
 {
     /**
      * Any title you want to be displayed
      * @var String
      * */
-    public $title = "Delete";
+    public $title = "Przywróć";
 
     /**
      * This should be a valid Feather icon string
      * @var String
      */
-    public $icon = "delete";
+    public $icon = "trash";
 
     /**
      * Execute the action when the user clicked on the button
@@ -28,15 +28,15 @@ class SoftDeleteTask extends Action
     public function handle($model, View $view)
     {
         $view->dialog()->confirm([
-                'title' => __('translation.attributes.delete'),
-                'description' => __('translation.messages_tasks.soft_delete',[
+                'title' => __('translation.messages_materials.restore.title'),
+                'description' => __('translation.messages_materials.restore.description',[
                     'name' => $model->name
                 ]),
                 'icon' => 'question',
-                'iconColor' => 'text-red-500',
+                'iconColor' => 'text-gree-500',
                 'accept' => [
                     'label' => __('translation.yes'),
-                    'method'=> 'softDelete',
+                    'method'=> 'restore',
                     'params'=> $model->id
                 ],
                 'reject'=>[
@@ -45,10 +45,8 @@ class SoftDeleteTask extends Action
             ]
         );
     }
-
-
     public function renderIf($model, View $view)
     {
-        return $model-> deleted_at === null;
+        return $model-> deleted_at !== null;
     }
 }

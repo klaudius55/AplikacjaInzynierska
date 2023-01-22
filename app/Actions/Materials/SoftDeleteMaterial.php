@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Actions\Tasks;
+namespace App\Actions\Materials;
 
 use LaravelViews\Actions\Action;
 use LaravelViews\Views\View;
 
-class SoftDeleteTask extends Action
+class SoftDeleteMaterial extends Action
 {
     /**
      * Any title you want to be displayed
@@ -29,7 +29,7 @@ class SoftDeleteTask extends Action
     {
         $view->dialog()->confirm([
                 'title' => __('translation.attributes.delete'),
-                'description' => __('translation.messages_tasks.soft_delete',[
+                'description' => __('translation.messages_materials.soft_delete',[
                     'name' => $model->name
                 ]),
                 'icon' => 'question',

@@ -31,6 +31,12 @@ class TaskForm extends Component
         ];
 
     }
+    public function getValidationAttributes()
+    {
+        return[
+            'name'=> __('zadanie')
+        ];
+    }
 
     public function mount(Task $task, Bool $editMode){
         $this->task = $task;
@@ -44,17 +50,16 @@ class TaskForm extends Component
 
     public function save(){
         $this->validate();
-        $this->task->save();
-        $this->notification()->success('successes');
-        /*
+        $this->tasks->save();
         $this->notification()->success(
             $title = $this->editMode
-            ?__('messages.successes.updated_title')
-            :__('messages.successes.stored_title'),
-           $description = $this->editMode
-               ?__('messages.successes.updated',['name'=>$this->worker->name])
-               :__('messages.successes.stored',['name'=>$this->worker->name])
+                ?__('translation.messages_tasks.successes.updated_title')
+                :__('translation.messages_tasks.successes.stored_title'),
+            $description = $this->editMode
+                ?__('translation.messages_tasks.successes.updated',['name'=>$this->task->name])
+                :__('translation.messages_tasks.successes.stored',['name'=>$this->task->name])
         );
-*/
+        $this->editMode = true;
     }
+
 }
