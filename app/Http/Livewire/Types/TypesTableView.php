@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Types;
 
+use App\Actions\Types\EditType;
 use App\Actions\Types\RestoreType;
 use App\Actions\Types\SoftDeleteType;
 use App\Models\Type;
@@ -17,7 +18,7 @@ class TypesTableView extends TableView
     /**
      * Sets a model class to get the initial data
      */
-    public $searchBy = ['name','surname'];
+    public $searchBy = ['name'];
     protected $paginate = 10;
     public function repository(): Builder
     {
@@ -58,7 +59,7 @@ class TypesTableView extends TableView
     protected function actionsByRow()
     {
         return [
-            new RedirectAction('types.edit', 'Edytuj', 'edit'),
+            new EditType('types.edit', 'Edytuj', 'edit'),
             new SoftDeleteType(),
             new RestoreType()
         ];

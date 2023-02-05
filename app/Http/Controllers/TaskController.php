@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\WorkerMultiSheetExport;
+use App\Exports\WorkersExport;
 use App\Models\Material;
 use App\Models\Task;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Excel;
 
 
 class TaskController extends Controller
@@ -123,5 +126,10 @@ class TaskController extends Controller
             'tasks.showWorker'
         );
     }
+
+    public function export(Excel $excel){
+        return $excel->download(new WorkersExport(2023),'workers.xlsx');
+    }
+
 
 }

@@ -60,7 +60,10 @@ class UnitController extends Controller
     public function edit(Unit $unit)
     {
         return view(
-            'units.form'
+            'units.form',
+            [
+                'unit'=>$unit
+            ]
         );
     }
 

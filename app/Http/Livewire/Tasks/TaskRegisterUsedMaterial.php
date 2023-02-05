@@ -11,7 +11,7 @@ class TaskRegisterUsedMaterial extends Component
 
     public Task $task;
     public int|null $material_id = null;
-    public float|null $quantity = 0 ;
+    public float|null $quantity =0;
 
 
     public function rules()
@@ -21,20 +21,18 @@ class TaskRegisterUsedMaterial extends Component
                 'required',
             ],
             'quantity' => [
-                'required'
+                'required',
+                'numeric',
+
             ],
         ];
-
     }
 
     public function render()
     {
-        return view('livewire.tasks.taskRegisterUsedMaterial', [
-            "task" => $this->task
-        ]);
+        return view('livewire.tasks.taskRegisterUsedMaterial');
+
     }
-
-
     public function save()
     {
         $this->validate();
@@ -42,16 +40,6 @@ class TaskRegisterUsedMaterial extends Component
 //        $material = Material::query()->find($this->material_id);
 
         $this->task->materials()->attach([$this->material_id => ['quantity' => $this->quantity]]);
-        $this->notification()->success('Zapisano');
-        /*
-        $this->notification()->success(
-        $title = $this->editMode
-        ?__('messages.successes.updated_title')
-        :__('messages.successes.stored_title'),
-        $description = $this->editMode
-        ?__('messages.successes.updated',['name'=>$this->worker->name])
-        :__('messages.successes.stored',['name'=>$this->worker->name])
-        );
-        */
+        $this->notification()->success('Dopisano zużyty materiał');
     }
 }

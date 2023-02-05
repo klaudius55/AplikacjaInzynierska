@@ -32,6 +32,9 @@
                     <x-nav-link :href="route('types.index')" :active="request()->routeIs('types.index')">
                         {{ __('Types') }}
                     </x-nav-link>
+                    <x-nav-link :href="route('workerexport')" :active="request()->routeIs('workerexport')">
+                        <b>{{ __('Generuj raport godzinowy') }} </b>
+                    </x-nav-link>
                 </div>
             </div>
 
@@ -50,17 +53,18 @@
                         </button>
                     </x-slot>
 
-                    <x-slot name="content">
+                    <div class="m-3 space-y-1">
                         <!-- Authentication -->
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
-                            <x-dropdown-link :href="route('logout')"
-                                    onclick="event.preventDefault();
-                                                this.closest('form').submit();">
+
+                            <x-nav-link :href="route('logout')"
+                                                   onclick="event.preventDefault();
+                                        this.closest('form').submit();">
                                 {{ __('Log Out') }}
-                            </x-dropdown-link>
+                            </x-nav-link>
                         </form>
-                    </x-slot>
+                    </div>
                 </x-dropdown>
             </div>
 
@@ -81,6 +85,27 @@
         <div class="pt-2 pb-3 space-y-1">
             <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                 {{ __('Dashboard') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('workers.index')" :active="request()->routeIs('workers.index')">
+                {{ __('Workers') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('tasks.index')" :active="request()->routeIs('tasks.index')">
+                {{ __('Tasks') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('projects.index')" :active="request()->routeIs('projects.index')">
+                {{ __('Projects') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('materials.index')" :active="request()->routeIs('materials.index')">
+                {{ __('Materials') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('units.index')" :active="request()->routeIs('units.index')">
+                {{ __('Units') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('types.index')" :active="request()->routeIs('types.index')">
+                {{ __('Types') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('workerexport')" :active="request()->routeIs('workerexport')">
+                <b>{{ __('Generuj raport godzinowy') }} </b>
             </x-responsive-nav-link>
         </div>
 

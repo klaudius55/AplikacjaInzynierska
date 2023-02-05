@@ -2,12 +2,15 @@
 
 namespace App\Http\Livewire\Tasks;
 
+use App\Actions\DeleteTaskWorker;
 use App\Models\TaskWorker;
 use Illuminate\Database\Eloquent\Builder;
 use LaravelViews\Views\TableView;
+use WireUi\Traits\Actions;
 
 class TaskWorkerTableView extends TableView
 {
+    use Actions;
     /**
      * Sets a model class to get the initial data
      */
@@ -18,7 +21,6 @@ class TaskWorkerTableView extends TableView
             );
         return $query;
     }
-
     /**
      * Sets the headers of the table as you want to be displayed
      *
@@ -33,7 +35,6 @@ class TaskWorkerTableView extends TableView
             'Utworzono'
         ];
     }
-
     /**
      * Sets the data to every cell of a single row
      *
@@ -42,11 +43,10 @@ class TaskWorkerTableView extends TableView
     public function row(TaskWorker $taskworker): array
     {
         return [
-            $taskworker->worker->name,
-            $taskworker->worker->surname,
+            $taskworker->worker->name??'',
+            $taskworker->worker->surname??'',
             $taskworker->timeWork,
             $taskworker->created_at
-
         ];
     }
 }

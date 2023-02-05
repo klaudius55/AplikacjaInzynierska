@@ -3,8 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Worker;
-use Illuminate\Database\Eloquent\Collection;
-use Illuminate\Database\Query\Builder;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 
 class WorkerController extends Controller
@@ -91,37 +90,28 @@ class WorkerController extends Controller
 
     }
 
-    public function allOpen()
+    public function allOpen(Request $request)
     {
-        return Worker::all()->map(function ($value){
-            return ['name'=> $value->name, 'id' => $value->id];
-        })->toArray();
-    }
-   /* public function allOpen(Request $request): Collection
-    {
-        $search = $request->get('search');
-        $selected = $request->get('selected');
+
         return Worker::query()
-            ->select('worker_id', 'name')
+            ->select(['*'])
             ->orderBy('name')
             ->when(
-                $search,
-                fn (Builder $query) => $query->where('name', 'like', "%{$search}%")
+                $request->search,
+                fn (Builder $query) => $query->where('name', 'like', "%{$request->search}%"),
+                fn (Builder $query) => $query->where('surname', 'like', "%{$request->search}%")
             )
             ->when(
-                $selected,
-                fn (Builder $query) => $query->whereIn(
-                    'worker_id',
-                    array_map(
-                        fn (array $item) => $item['worker_id'],
-                        array_filter(
-                            $selected,
-                            fn ($item) => (is_array($item) && isset($item['worker_id']))
-                        )
-                    )
-                ),
+                $request->exists('selected'),
+                fn (Builder $query) => $query->whereIn('id', $request->selected),
                 fn (Builder $query) => $query->limit(Worker::count())
             )
-            ->get();
-    }*/
+            ->get()
+            ->map(function ($item) {
+                return collect([
+                    'id' => $item->id,
+                    'name' => $item->name . ' ' . $item->surname
+                ]);
+            });
+    }
 }

@@ -20,7 +20,9 @@ class UnitForm extends Component
         return[
             'unit.name'=>[
                 'required',
-                'string'
+                'string',
+                'unique:units,name' .
+                ($this->editMode ? (',' .$this->unit->id):'')
             ],
         ];
 

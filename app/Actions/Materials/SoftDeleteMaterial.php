@@ -11,7 +11,7 @@ class SoftDeleteMaterial extends Action
      * Any title you want to be displayed
      * @var String
      * */
-    public $title = "Delete";
+    public $title = "Usuń";
 
     /**
      * This should be a valid Feather icon string

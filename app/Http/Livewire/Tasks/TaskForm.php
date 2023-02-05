@@ -50,7 +50,7 @@ class TaskForm extends Component
 
     public function save(){
         $this->validate();
-        $this->tasks->save();
+        $this->task->save();
         $this->notification()->success(
             $title = $this->editMode
                 ?__('translation.messages_tasks.successes.updated_title')

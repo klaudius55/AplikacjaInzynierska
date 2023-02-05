@@ -2,7 +2,6 @@
     <div>
         <h1><b>Godziny pracownika</b></h1>
     </div>
-
     <form wire:submit.prevent="save">
         <x-select
             label="Wybierz pracownika"
@@ -19,7 +18,6 @@
             :options="[0.5,1,2,3,4,5,6,7,8,9,10,11,12]"
             wire:model="Worker.timeWork"
         />
-
         <div>
             <x-button href="{{route('tasks.index')}}" label="{{__('translation.attributes.back')}}"/>
             <x-button type="submit" primary label="{{__('translation.attributes.save')}}" spinner/>

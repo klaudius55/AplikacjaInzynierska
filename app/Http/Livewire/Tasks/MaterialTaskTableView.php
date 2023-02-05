@@ -15,9 +15,6 @@ class MaterialTaskTableView extends TableView
      */
     public function repository(): Builder
     {
-      //  dd(request()->task);
-       // dd(MaterialTask::first()->task);
-
         $query = MaterialTask::query()
             ->where('task_id',request()->task->id
             );
@@ -32,7 +29,7 @@ class MaterialTaskTableView extends TableView
             'Rodzaj materiału',
             'Jednostka',
             'Ilość',
-            Header::title(__('translation.attributes.created_at'))->sortBy('created_at'),
+            Header::title(__('translation.attributes.created_at')),
         ];
     }
 

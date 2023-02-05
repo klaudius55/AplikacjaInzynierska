@@ -31,7 +31,8 @@ class MaterialForm extends Component
 
             ],
             'material.type_id'=>[
-                'required',
+                'required'
+
             ],
             'material.unit_id'=>[
                 'required'

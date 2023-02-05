@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('materials', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->string('name',50);
             $table->double('thickness');
             $table->foreignId('type_id')->references('id')->on('types');
             $table->foreignId('unit_id')->references('id')->on('units');

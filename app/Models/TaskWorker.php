@@ -10,9 +10,9 @@ use Illuminate\Database\Eloquent\Relations\Pivot;
 class TaskWorker extends Pivot
 {
     public function worker(){
-        return $this->belongsTo(Worker::class);
+        return $this->belongsTo(Worker::class)->withTrashed();
     }
     public function task(){
-        return $this->belongsTo(Task::class);
+        return $this->belongsTo(Task::class)->withTrashed();
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Materials;
 
+use App\Actions\Materials\EditMaterial;
 use App\Actions\Materials\RestoreMaterial;
 use App\Actions\Materials\SoftDeleteMaterial;
 use App\Actions\Units\SoftDeleteUnit;
@@ -23,7 +24,7 @@ class MaterialsTableView extends TableView
         return Material::query()->withTrashed();
     }
 
-    public $searchBy = ['name','thickness','type_id'];
+    public $searchBy = ['name','thickness','types.name'];
     /**
      * Sets the headers of the table as you want to be displayed
      *
@@ -55,8 +56,8 @@ class MaterialsTableView extends TableView
         $material->id,
         $material->name,
         $material->thickness,
-            $material->types->name,
-            $material->units->name,
+            $material->types->name??'',
+            $material->units->name??'',
         $material->created_at,
         $material->updated_at,
         $material->deleted_at,
@@ -66,8 +67,7 @@ class MaterialsTableView extends TableView
     protected function actionsByRow()
     {
         return [
-
-            new RedirectAction('materials.edit', 'Edytuj', 'edit'),
+            new EditMaterial('materials.edit','Edytuj','edit'),
             new SoftDeleteMaterial(),
             new RestoreMaterial()
         ];

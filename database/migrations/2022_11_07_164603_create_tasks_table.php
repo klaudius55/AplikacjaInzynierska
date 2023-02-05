@@ -15,10 +15,9 @@ return new class extends Migration
     {
         Schema::create('tasks', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->foreignId('project_id')->nullable('name')->references('id')->on('projects');
-          //  $table-> unsignedBigInteger('worker_id');
-          //  $table-> unsignedBigInteger('material_id');
+            $table->string('name',30)->unique();
+            $table->foreignId('project_id')->nullable('name')
+                ->references('id')->on('projects');
             $table->timestamps();
             $table->softDeletes();
         });

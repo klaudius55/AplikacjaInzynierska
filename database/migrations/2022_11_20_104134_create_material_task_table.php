@@ -17,7 +17,7 @@ return new class extends Migration
             $table->bigIncrements('id');
             $table->integer('task_id');
             $table->integer('material_id');
-            $table->double('quantity')->default();
+            $table->float('quantity')->default();
             $table->timestamp('created_at');
         });
     }

@@ -12,7 +12,6 @@ class Task extends Model
 
     protected $table = 'Tasks';
 
-
     protected $fillable = [
         'ID',
         'name',
@@ -20,8 +19,6 @@ class Task extends Model
         'created_at',
         'updated_at',
     ];
-
-
 
     public function projects()
     {
@@ -33,7 +30,6 @@ class Task extends Model
         return $this->belongsToMany(Worker::class)
             -> withPivot('timeWork')
             ->using(TaskWorker::class);
-
     }
 
     public function materials()
@@ -41,8 +37,5 @@ class Task extends Model
         return $this->belongsToMany(Material::class)
             ->withPivot('quantity',)
             ->using(MaterialTask::class);
-
     }
-
-
 }

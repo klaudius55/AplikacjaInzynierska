@@ -16,7 +16,7 @@ class TypeSeeder extends Seeder
     public function run()
     {
         Type::factory()
-            ->count (20)
+            ->count (10)
             ->create();
     }
 }

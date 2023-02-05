@@ -60,7 +60,7 @@ class ProjectsTableView extends TableView
     protected function actionsByRow()
     {
         return [
-            new RedirectAction('projects.edit', 'Edytuj', 'edit'),
+            new EditProject('projects.edit', 'Edytuj', 'edit'),
             new SoftDeleteProject(),
             new RestoreProject()
 

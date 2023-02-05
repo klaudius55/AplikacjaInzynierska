@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Workers;
 
 
+use App\Actions\Workers\EditWorker;
 use App\Actions\Workers\RestoreWorker;
 use App\Actions\Workers\SoftDeleteWorker;
 use App\Models\Worker;
@@ -63,8 +64,7 @@ class WorkersTableView extends TableView
     protected function actionsByRow()
     {
         return [
-            // Will redirect to `route('user', $user->id)`
-            new RedirectAction('workers.edit', 'Edytuj', 'edit'),
+            new EditWorker('workers.edit', 'Edytuj', 'edit'),
             new SoftDeleteWorker(),
             new RestoreWorker()
         ];

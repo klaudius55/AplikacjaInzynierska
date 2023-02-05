@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Material;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
-use LaravelViews\Data\Contracts\Searchable;
 
 class MaterialController extends Controller
 {
@@ -116,32 +115,4 @@ class MaterialController extends Controller
                 ]);
             });
     }
-
-   /* public function async(Request $request)
-    {
-        return Material::query()
-            ->select((['*']))
-            ->orderBy('name',)
-            ->when(
-                $request->search,
-                fn(Builder $query) => $query
-                    ->where('*', 'like', "%{$request->search}%")
-            )
-            ->when(
-                $request->exists('selected'),
-                fn(Builder $query) => $query->whereIn(
-                    'id',
-                    array_map(
-                        fn(array $item) => $item['id'],
-                        array_filter(
-                            $request->input('selected', ['thickness']),
-                            fn($item) => (is_array($item) && isset($item['id']))
-                        )
-                    )
-                ),
-                fn(Builder $query) => $query->limit(Material::count())
-            )
-            ->get();
-    }*/
-
 }

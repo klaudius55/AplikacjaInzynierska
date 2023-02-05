@@ -792,6 +792,9 @@
     "Types": "Typ materiału",
     "CreateTasks": "Twórz zadanie",
     "Units": "Jednostki",
-    "AddWorker": "Dodaj pracownika"
+    "AddWorker": "Dodaj pracownika",
+    "There are no items in this table":"Brak elementów w tabeli",
+    "Filters": "Filtry",
+    "Clear filters": "Wyczyść filtr"
 
 }

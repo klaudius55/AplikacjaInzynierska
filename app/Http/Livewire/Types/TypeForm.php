@@ -21,7 +21,9 @@ class TypeForm extends Component
         return[
             'type.name'=>[
                 'required',
-                'string'
+                'string',
+                'unique:types,name' .
+                ($this->editMode ? (',' .$this->type->id):'')
             ],
         ];
 

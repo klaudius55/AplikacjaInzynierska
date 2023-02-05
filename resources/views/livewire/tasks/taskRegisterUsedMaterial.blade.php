@@ -13,9 +13,12 @@
             option-label="name"
             option-value="id"
         />
-        <x-input
+        <x-inputs.currency
             label="Ilosć"
             placeholder="ilość zużytego materiału"
+            thousands="."
+            decimal=","
+            precision="4"
             wire:model="quantity"
         />
         <div>

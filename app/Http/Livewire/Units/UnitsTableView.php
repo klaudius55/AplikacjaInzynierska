@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Units;
 
+use App\Actions\Units\EditUnit;
 use App\Actions\Units\RestoreUnit;
 use App\Actions\Units\SoftDeleteUnit;
 use App\Models\Unit;
@@ -57,7 +58,7 @@ class UnitsTableView extends TableView
     protected function actionsByRow()
     {
         return [
-            new RedirectAction('units.edit', 'Edytuj', 'edit'),
+            new EditUnit('units.edit', 'Edytuj', 'edit'),
             new SoftDeleteUnit(),
             new RestoreUnit()
 

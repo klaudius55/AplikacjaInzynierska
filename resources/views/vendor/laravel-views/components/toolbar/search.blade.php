@@ -1,6 +1,6 @@
 @if ($searchBy)
   @component('laravel-views::components.form.input-group', [
-    'placeholder' => 'Search',
+    'placeholder' => 'Szukaj',
     'model' => 'search',
     'onClick' => 'clearSearch',
     'icon' => $search ? 'x-circle' : 'search',

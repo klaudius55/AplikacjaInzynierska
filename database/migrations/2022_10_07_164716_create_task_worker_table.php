@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table-> integer('task_id');
             $table->integer('worker_id');
-            $table->double ('timeWork');
+            $table->float ('timeWork');
             $table->timestamp('created_at');
         });
     }

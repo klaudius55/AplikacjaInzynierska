@@ -19,7 +19,9 @@ class ProjectForm extends Component
 
         return[
             'project.name'=>[
+                'required',
                 'string',
+
             ],
         ];
     }
