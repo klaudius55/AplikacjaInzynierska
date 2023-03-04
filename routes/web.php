@@ -37,7 +37,7 @@ Route::resource('workers', WorkerController::class)
 Route::get('tasks/export/', [TaskController::class, 'export'])->name('workerexport');
 Route::get('/tasks/showWorker/{task}', [TaskController::class, 'showWorker'])->name('tasks.showWorker');
 Route::get('/tasks/registerWorker/{task}', \App\Http\Livewire\Tasks\TaskRegisterWorker::class)->name('tasks.registerWorker');
-Route::get('/tasks/registerUsedMaterial/{task}', TaskRegisterUsedMaterial::class)->name('tasks.registerUsedMaterial');
+Route::get('/tasks/registerUsedMaterial/{task}', \App\Http\Livewire\Tasks\TaskRegisterUsedMaterial::class)->name('tasks.registerUsedMaterial');
 Route::resource('tasks', TaskController::class)
     ->only(['index','create','edit','show','store'])
     ->middleware(['auth', 'verified']);
